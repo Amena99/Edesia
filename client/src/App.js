@@ -1,9 +1,12 @@
 import React from "react";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
-import Books from "./pages/Books";
-import Detail from "./pages/Detail";
-import NoMatch from "./pages/NoMatch";
+import Books from "./pages/MealListing";
+import Detail from "./pages/MealDetail";
 import Nav from "./components/Nav";
+import MealListing from "./pages/MealListing";
+import MealDetail from "./pages/MealDetail";
+import Splash from "./pages/Splash";
+
 
 function App() {
   return (
@@ -11,10 +14,10 @@ function App() {
       <div>
         <Nav />
         <Switch>
-          <Route exact path="/" component={Books} />
-          <Route exact path="/books" component={Books} />
-          <Route exact path="/books/:id" component={Detail} />
-          <Route component={NoMatch} />
+          <Route exact path="/" component={Splash} />
+          <Route exact path="/meals" component={MealListing} />
+          <Route exact path="/meals/:id" component={MealDetail} />
+          <Route component={Books} />
         </Switch>
       </div>
     </Router>
