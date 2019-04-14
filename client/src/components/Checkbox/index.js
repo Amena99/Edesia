@@ -2,7 +2,6 @@ import React from "react";
 import "./style.css";
 
 //This file exports the checkbox
-
 export function Checkbox(props){
     return(
         

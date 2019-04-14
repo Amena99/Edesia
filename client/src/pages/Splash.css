@@ -1,0 +1,58 @@
+#mainLogo
+{
+   width: 500px;
+   height: 100px;
+   /* overflow: hidden; */
+}
+#login, 
+#signup{
+    background-color: white;
+    padding: 20px ;
+    text-align: center;
+    color: darkgray;
+    font-size: 28px;
+    border-radius: 10px;
+    width: 300px;
+    margin: 10px;
+    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
+}
+
+#login:hover, 
+#signup:hover{
+    background-color: rgb(242, 242, 242); 
+    cursor: pointer;
+    content: '\00bb';
+    opacity: 1;
+    right: 0;
+
+}
+#logoRow{
+    padding-top: 200px;
+    display: flex;
+    justify-content: center;
+}
+#buttonsRow{
+    padding-top: 100px;
+}
+/* #signup span {
+    
+    display: inline-block;
+    position: relative;
+    transition: 0.5s;
+  }
+
+#signup span:after {
+   
+    position: absolute;
+    opacity: 0;
+    top: 0;
+    right: -20px;
+    transition: 0.5s;
+  } */
+
+/* #signup:hover span:after {
+     cursor: pointer;
+     content: '\00bb';
+     opacity: 1;
+    right: 0;
+  } */

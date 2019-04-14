@@ -12,7 +12,6 @@ function App() {
   return (
     <Router>
       <div>
-        <Nav />
         <Switch>
           <Route exact path="/" component={Splash} />
           <Route exact path="/meals" component={MealListing} />

@@ -1,13 +1,16 @@
 import React, { Component } from "react";
 import DeleteBtn from "../components/DeleteBtn";
 import Jumbotron from "../components/Jumbotron";
-import API from "../utils/API";
+import API from "../services/API";
 import { Link } from "react-router-dom";
 import { Col, Row, Container } from "../components/Grid";
 import { List, ListItem } from "../components/List";
 import { Input, TextArea, FormBtn } from "../components/Form";
 import { Checkbox } from "../components/Checkbox";
-import "../App.css"
+import "./Splash.css";
+import {Helmet} from "react-helmet";
+import {Image} from "../components/Image";
+import Button from "../components/Button";
 
 class Splash extends Component {
   constructor(props){
@@ -62,14 +65,37 @@ class Splash extends Component {
 
   render() {
     return (
+      <div>
+      <Helmet>
+      <style>{'body { background-color: #ec1c2a; }'}</style>
+      </Helmet>
       <Container fluid id={"splashContainer"}>
-        <Row id={"splashRow"}>
-          <Col size="md-6 sm-12" id={"splashCol"}>
-          </Col>
-          <Col size="md-6 sm-12">
+        <Row fluid className2="text-center" id={"mainlogoRow"}>
+          <Col size="md-12 sm-12" id={"splashCol"}>
+            <Row fluid className2="text-center" id="logoRow">
+              <Image 
+              src="./assets/02-01-copy.jpg"
+              divid="mainLogo"
+              /> 
+            </Row>
+              
+          </Col>  
+        </Row>
+        <Row fluid className2="text-center" id="buttonsRow">
+          <Col size="md-12 sm-12">
+              <Row fluid className2="text-center" id="lbuttonRow">
+                <Button id="login" label="Log In" />
+              </Row>
+              <Row fluid className2="text-center" id="sbuttonRow">
+                <Button id="signup" label="Sign Up" />
+              </Row>
+            
           </Col>
         </Row>
       </Container>
+
+      </div>
+      
     );
   }
 }

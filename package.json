@@ -25,6 +25,10 @@
     "if-env": "^1.0.4",
     "mongoose": "^5.3.16",
     "mysql2": "^1.6.5",
-    "sequelize": "^5.2.7"
+    "react": "^16.8.6",
+    "react-dom": "^16.8.6",
+    "react-helmet": "^5.2.0",
+    "sequelize": "^5.2.7",
+    "styled-components": "^4.2.0"
   }
 }
