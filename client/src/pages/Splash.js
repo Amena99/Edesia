@@ -11,6 +11,8 @@ import "./Splash.css";
 import {Helmet} from "react-helmet";
 import {Image} from "../components/Image";
 import Button from "../components/Button";
+import Modal from "../components/Modal";
+
 
 class Splash extends Component {
   constructor(props){
@@ -43,7 +45,7 @@ class Splash extends Component {
     const target = event.target;
     const value = target.type === "checkbox" ? target.checked : target.value;
     const name = target.name;
-   
+    
     this.setState({
       [name]: value
     });
@@ -91,7 +93,10 @@ class Splash extends Component {
               <Row fluid className2="text-center" id="sbuttonRow">
                 <Button id="signup" label="Sign Up" />
               </Row>
-            
+              <Modal
+                show={this.openModalHandler}
+              >
+              </Modal>
           </Col>
         </Row>
       </Container>
