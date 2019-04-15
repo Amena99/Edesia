@@ -30,12 +30,14 @@ class Splash extends Component {
   };
 
   openModalHandler = () => {
+    console.log("Inside openModalHandler");
     this.setState({
       isShowing: true
     })
   };
 
   closeModalHandler = () => {
+    console.log("Inside CloseModalHandler");
     this.setState({
       isShowing: false
     })
