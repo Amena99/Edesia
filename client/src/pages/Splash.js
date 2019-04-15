@@ -110,8 +110,12 @@ class Splash extends Component {
                 { this.state.isShowing ? <div onClick={this.closeModalHandler} className="back-drop"></div> : null }
 
                 {/* <button className="open-modal-btn" onClick={this.openModalHandler}>Open Modal</button> */}
+                
                 <Row fluid className2="text-center" id="lbuttonRow">
-                 <Button id="signup" className="open-modal-btn" label="Sign Up" onClick={this.openModalHandler}/>
+                 <Button id="signup" className="open-modal-btn" label="Log In" onClick={this.openModalHandler}/>
+                </Row>
+                <Row fluid className2="text-center" id="sbuttonRow">
+                <Button id="signup" label="Sign Up" onClick={this.openModalHandler}/>
                 </Row>
                
 
