@@ -16,19 +16,21 @@ class Splash extends Component {
   constructor(props){
     super(props);
     this.state = {
-   
+      isShowing: false
   };
 
   this.handleInputChange = this.handleInputChange.bind(this);
-  }
+  };
   
 
   componentDidMount() {
     
-  }
+  };
 
-  loadBooks = () => {
-  
+  openModalHandler = () => {
+    this.setState({
+      isShowing: true
+    })
   };
 
   deleteBook = id => {
