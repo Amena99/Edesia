@@ -10,18 +10,23 @@ import { Checkbox } from "../components/Checkbox";
 import "./Splash.css";
 import {Helmet} from "react-helmet";
 import {Image} from "../components/Image";
-import Button from "../components/Button";
-import Modal from "../components/Modal";
+// import Button from "../components/Button";
+// import SplashModal from "../components/SplashModal";
+import Modal from "react-bootstrap/Modal";
+import Button from "react-bootstrap/Button";
 
 
 class Splash extends Component {
   constructor(){
     super();
+   
+
     this.state = {
       isShowing: false,
       login: false,
       signup: false
     };
+
   };
 
   openLoginHandler = () => {
@@ -56,26 +61,26 @@ class Splash extends Component {
   };
 
   handleInputChange = event => {
-    const target = event.target;
-    const value = target.type === "checkbox" ? target.checked : target.value;
-    const name = target.name;
+    // const target = event.target;
+    // const value = target.type === "checkbox" ? target.checked : target.value;
+    // const name = target.name;
     
-    this.setState({
-      [name]: value
-    });
+    // this.setState({
+    //   [name]: value
+    // });
   };
 
   handleFormSubmit = event => {
-    event.preventDefault();
+    // event.preventDefault();
 
   };
 
   setCheckboxChange = event => {
-    event.preventDefault();
-    const { name, value } = event.target;
-    this.setState({
-      [name]: value
-    });
+    // event.preventDefault();
+    // const { name, value } = event.target;
+    // this.setState({
+    //   [name]: value
+    // });
 
   }
 
@@ -101,14 +106,14 @@ class Splash extends Component {
              
           {/* </Col> */}
         {/* </Row> */}
-        <div>
-                { this.state.isShowing ? <div onClick={this.closeModalHandler} className="back-drop"></div> : null }
+        {/* <div>
+                { this.state.isShowing ? <div onClick={this.closeModalHandler} className="back-drop"></div> : null } */}
 
                 <Row fluid className2="text-center" id="lbuttonRow">
-                 <Button id="signup" className="open-modal-btn" label="Log In" onClick={this.openLoginHandler}/>
+                 <Button id="signup" className="open-modal-btn" label="Log In" onClick={this.openLoginHandler}>Log In</Button>
                 </Row>
                 <Row fluid className2="text-center" id="sbuttonRow">
-                <Button id="signup" label="Sign Up" onClick={this.openSignupHandler}/>
+                <Button id="signup" label="Sign Up" onClick={this.openSignupHandler}>Sign Up</Button>
                 </Row>
                <Modal
                     className="modal"
@@ -127,8 +132,27 @@ class Splash extends Component {
                     title={"Sign Up"}>
                        Your Name:
                        Password:
-                </Modal>
-            </div>
+                </Modal> */}
+             {/* </div> */}
+            {/* <SplashModal>
+              show={this.state.login}
+              handleClose={this.closeModalHandler}
+            </SplashModal> */}
+            {/* <Modal show={this.state.login} onHide={this.closeModalHandler}>
+              <Modal.Header closeButton>
+                <Modal.Title>Title</Modal.Title>
+              </Modal.Header>
+
+              <Modal.Body>
+                <p>body</p>
+              </Modal.Body>
+
+              <Modal.Footer>
+                <Button variant="secondary">Close</Button>
+                <Button variant="primary">Login</Button>
+              </Modal.Footer>
+            </Modal> */}
+
       </Container>
 
       </div>
