@@ -3,12 +3,15 @@
   border: 1px solid #d0cccc;
   box-shadow: 0 5px 8px 0 rgba(0,0,0,0.2), 0 7px 20px 0 rgba(0,0,0,0.17);
   margin: 100px auto 0;
-  transition: all .8s;
-  width: 60%;
+  transition: all .1s;
+  width: 50%;
+  height: 400px;
+  /* position: absolute; */
+  z-index: 10;
 }
 
 .modal-header {
-  background: #263238;
+  background: white;
   height: 40px;
   line-height: 40px;
   padding: 5px 20px;
@@ -16,7 +19,7 @@
 }
 
 .modal-header h3 {
-  color: white;
+  color: #ec1c2a;
   float: left;
   margin: 0;
   padding: 0;
@@ -28,13 +31,13 @@
 }
 
 .modal-footer {
-  background: #263238;
+  background:white;
   height: 35px;
   padding: 15px;
 }
 
 .close-modal-btn {
-  color: white;
+  color: darkgray;
   cursor: pointer;
   float: right;
   font-size: 30px;
@@ -46,35 +49,31 @@
 }
 
 .btn-cancel, .btn-continue {
-  background: coral;
   border: none;
-  color: white;
   cursor: pointer;
   font-weight: bold;
   outline: none;
   padding: 10px;
+  border-radius: 10px;
+  width: 150px;
 }
 
 .btn-cancel {
-  background-color: #b71c1c;
+  background-color: red;
   float: left;
+  color: white;
 }
 
 .btn-continue {
-  background-color: #1b5e20;
+  background-color: seashell;
   float: right;
+  color: #ec1c2a;
 }
 
 .back-drop {
-  background-color: rgba(48, 49, 48, 0.42);
   height: 100%;
   position: fixed;
   transition: all 1.3s;
   width: 100%;
 }
 
-.open-modal-btn {
-  margin: 15px;
-  padding: 10px;
-  font-weight: bold;
-}

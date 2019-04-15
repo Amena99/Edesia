@@ -18,21 +18,34 @@ class Splash extends Component {
   constructor(){
     super();
     this.state = {
-      isShowing: false
+      isShowing: false,
+      login: false,
+      signup: false
     };
   };
 
-  openModalHandler = () => {
-    console.log("Inside openModalHandler");
+  openLoginHandler = () => {
+    console.log("Inside openLoginHandler");
     this.setState({
-      isShowing: true
+      isShowing: true,
+      login: true
+    })
+  };
+
+  openSignupHandler = () => {
+    console.log("Inside openSignupHandler");
+    this.setState({
+      isShowing: true,
+      signup:true
     })
   };
 
   closeModalHandler = () => {
     console.log("Inside CloseModalHandler");
     this.setState({
-      isShowing: false
+      isShowing: false,
+      login: false,
+      signup: false
     })
   };
 
@@ -81,49 +94,38 @@ class Splash extends Component {
               divid="mainLogo"
               /> 
             </Row>
-              
           </Col>  
         </Row>
         {/* <Row fluid className2="text-center" id="buttonsRow">
           <Col size="md-12 sm-12">
-              <Row fluid className2="text-center" id="lbuttonRow">
-                <Button id="login" label="Log In" datatoggle="modal" datatarget="loginModal" onClick={this.openModalHandler}/>
-              </Row>
-              <Row fluid className2="text-center" id="sbuttonRow">
-                <Button id="signup" label="Sign Up" onClick={this.openModalHandler} data-toggle="modal" data-target="#login"/>
-               <div>
-                { this.state.isShowing ? <div onClick={this.closeModalHandler} className="back-drop"></div> : null }
-                <Modal
-                  id={"logIn"}
-                  show={this.state.isShowing}
-                  close={this.closeModalHandler}
-                  option1="Log In"
-                  className="modal"
-                >
-                </Modal>
-              </div>
-             </Row> */}
              
           {/* </Col> */}
         {/* </Row> */}
         <div>
                 { this.state.isShowing ? <div onClick={this.closeModalHandler} className="back-drop"></div> : null }
 
-                {/* <button className="open-modal-btn" onClick={this.openModalHandler}>Open Modal</button> */}
-                
                 <Row fluid className2="text-center" id="lbuttonRow">
-                 <Button id="signup" className="open-modal-btn" label="Log In" onClick={this.openModalHandler}/>
+                 <Button id="signup" className="open-modal-btn" label="Log In" onClick={this.openLoginHandler}/>
                 </Row>
                 <Row fluid className2="text-center" id="sbuttonRow">
-                <Button id="signup" label="Sign Up" onClick={this.openModalHandler}/>
+                <Button id="signup" label="Sign Up" onClick={this.openSignupHandler}/>
                 </Row>
-               
-
+               <Modal
+                    className="modal"
+                    id="loginModal"
+                    show={this.state.login}
+                    close={this.closeModalHandler}
+                    title={"Log In"}>
+                       Login ID:
+                       Password:
+                </Modal>
                 <Modal
                     className="modal"
-                    show={this.state.isShowing}
-                    close={this.closeModalHandler}>
-                       Login ID:
+                    id="signupModal"
+                    show={this.state.signup}
+                    close={this.closeModalHandler}
+                    title={"Sign Up"}>
+                       Your Name:
                        Password:
                 </Modal>
             </div>
