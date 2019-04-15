@@ -5,7 +5,11 @@ import "./style.css";
 // That way we don't have to define them all individually
 function Modal (props) {
   return (
-    <div class="modal fade" id={props.id} tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal fade" id={props.id} tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true"
+    style={{
+      opacity: props.show ? '1' : '0'
+    }}>
+    >
       <div class="modal-dialog" role="document">
         <div class="modal-content">
           <div class="modal-header">
@@ -18,8 +22,8 @@ function Modal (props) {
            <p>{props.children}</p>
           </div>
           <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-dismiss="modal">{props.option1}</button>
-            <button type="button" class="btn btn-primary">{props.option2}</button>
+            <button type="button" class="btn btn-secondary" onClick={props.close}>Cancel</button>
+            <button type="button" class="btn btn-primary" >{props.option1}</button>
           </div>
         </div>
       </div>

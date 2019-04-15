@@ -35,6 +35,13 @@ class Splash extends Component {
     })
   };
 
+  closeModalHandler = () => {
+    this.setState({
+      isShowing: false
+    })
+  };
+
+
   deleteBook = id => {
     API.deleteBook(id)
       .then(res => this.loadBooks())
@@ -88,15 +95,19 @@ class Splash extends Component {
         <Row fluid className2="text-center" id="buttonsRow">
           <Col size="md-12 sm-12">
               <Row fluid className2="text-center" id="lbuttonRow">
-                <Button id="login" label="Log In" datatoggle="modal" datatarget="loginModal" />
+                <Button id="login" label="Log In" datatoggle="modal" datatarget="loginModal" onClick={this.openModalHandler}/>
               </Row>
               <Row fluid className2="text-center" id="sbuttonRow">
-                <Button id="signup" label="Sign Up" />
+                <Button id="signup" label="Sign Up" onClick={this.openModalHandler}/>
               </Row>
               <Modal
-                show={this.openModalHandler}
+                id={"logIn"}
+                show={this.state.isShowing}
+                close={this.closeModalHandler}
+                option1="Log In"
               >
               </Modal>
+             
           </Col>
         </Row>
       </Container>
