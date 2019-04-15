@@ -5,7 +5,7 @@ import "./style.css";
 // That way we don't have to define them all individually
 function Button (props) {
   return (
-    <button type={props.type} id={props.id} >{props.label}</button>
+    <button type={props.type} id={props.id} data-toggle={props.datatoggle} data-target={props.datatarget}>{props.label}</button>
   );
 }
 

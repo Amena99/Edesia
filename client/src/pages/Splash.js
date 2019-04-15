@@ -84,7 +84,7 @@ class Splash extends Component {
         <Row fluid className2="text-center" id="buttonsRow">
           <Col size="md-12 sm-12">
               <Row fluid className2="text-center" id="lbuttonRow">
-                <Button id="login" label="Log In" />
+                <Button id="login" label="Log In" datatoggle="modal" datatarget="loginModal" />
               </Row>
               <Row fluid className2="text-center" id="sbuttonRow">
                 <Button id="signup" label="Sign Up" />
