@@ -3,32 +3,27 @@ import "./style.css";
 
 // The ...props means, spread all of the passed props onto this element
 // That way we don't have to define them all individually
-function Modal (props) {
+const Modal = (props) => {
   return (
-    
-    <div className="modal fade" id={props.id}  role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true"
-    style={{
-      opacity: props.show ? '1' : '0'
-    }}>
-    >
-      <div className="modal-dialog" role="document">
-        <div className="modal-content">
+    <div>
+      <div className="modal-wrapper"
+          style={{
+              transform: props.show ? 'translateY(0vh)' : 'translateY(-100vh)',
+              opacity: props.show ? '1' : '0'
+          }}>
           <div className="modal-header">
-            <h5 className="modal-title" id="exampleModalLabel">{props.title}</h5>
-            <button type="button" className="close" data-dismiss="modal" aria-label="Close">
-              <span aria-hidden="true">&times;</span>
-            </button>
+              <h3>Modal Header</h3>
+              <span className="close-modal-btn" onClick={props.close}>×</span>
           </div>
           <div className="modal-body">
-           <p>{props.children}
-          
-           </p>
+              <p>
+                  {props.children}
+              </p>
           </div>
           <div className="modal-footer">
-            <button type="button" className="btn btn-secondary" onClick={props.close}>Cancel</button>
-            <button type="button" className="btn btn-primary" >{props.option1}</button>
+              <button className="btn-cancel" onClick={props.close}>CLOSE</button>
+              <button className="btn-continue">CONTINUE</button>
           </div>
-        </div>
       </div>
     </div>
   );

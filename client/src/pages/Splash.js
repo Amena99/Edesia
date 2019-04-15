@@ -15,18 +15,11 @@ import Modal from "../components/Modal";
 
 
 class Splash extends Component {
-  constructor(props){
-    super(props);
+  constructor(){
+    super();
     this.state = {
       isShowing: false
-  };
-
-  this.handleInputChange = this.handleInputChange.bind(this);
-  };
-  
-
-  componentDidMount() {
-    
+    };
   };
 
   openModalHandler = () => {
@@ -42,7 +35,6 @@ class Splash extends Component {
       isShowing: false
     })
   };
-
 
   deleteBook = id => {
     API.deleteBook(id)
@@ -67,14 +59,12 @@ class Splash extends Component {
 
   setCheckboxChange = event => {
     event.preventDefault();
-    
     const { name, value } = event.target;
     this.setState({
       [name]: value
     });
 
   }
-
 
   render() {
     return (
@@ -94,24 +84,45 @@ class Splash extends Component {
               
           </Col>  
         </Row>
-        <Row fluid className2="text-center" id="buttonsRow">
+        {/* <Row fluid className2="text-center" id="buttonsRow">
           <Col size="md-12 sm-12">
               <Row fluid className2="text-center" id="lbuttonRow">
                 <Button id="login" label="Log In" datatoggle="modal" datatarget="loginModal" onClick={this.openModalHandler}/>
               </Row>
               <Row fluid className2="text-center" id="sbuttonRow">
-                <Button id="signup" label="Sign Up" onClick={this.openModalHandler}/>
-              </Row>
-              <Modal
-                id={"logIn"}
-                show={this.state.isShowing}
-                close={this.closeModalHandler}
-                option1="Log In"
-              >
-              </Modal>
+                <Button id="signup" label="Sign Up" onClick={this.openModalHandler} data-toggle="modal" data-target="#login"/>
+               <div>
+                { this.state.isShowing ? <div onClick={this.closeModalHandler} className="back-drop"></div> : null }
+                <Modal
+                  id={"logIn"}
+                  show={this.state.isShowing}
+                  close={this.closeModalHandler}
+                  option1="Log In"
+                  className="modal"
+                >
+                </Modal>
+              </div>
+             </Row> */}
              
-          </Col>
-        </Row>
+          {/* </Col> */}
+        {/* </Row> */}
+        <div>
+                { this.state.isShowing ? <div onClick={this.closeModalHandler} className="back-drop"></div> : null }
+
+                {/* <button className="open-modal-btn" onClick={this.openModalHandler}>Open Modal</button> */}
+                <Row fluid className2="text-center" id="lbuttonRow">
+                 <Button id="signup" className="open-modal-btn" label="Sign Up" onClick={this.openModalHandler}/>
+                </Row>
+               
+
+                <Modal
+                    className="modal"
+                    show={this.state.isShowing}
+                    close={this.closeModalHandler}>
+                       Login ID:
+                       Password:
+                </Modal>
+            </div>
       </Container>
 
       </div>
