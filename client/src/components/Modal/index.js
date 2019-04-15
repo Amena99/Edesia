@@ -1,4 +1,5 @@
 import React from "react";
+import Modal from "react-bootstrap/Modal";
 import "./style.css";
 
 // The ...props means, spread all of the passed props onto this element
