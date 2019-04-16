@@ -75,21 +75,7 @@ class MealListing extends Component {
     console.log(this.state.time_available);
     console.log(this.state.quantity);
     console.log(this.state.catererId);
-   
-
-   
-
-    // if (this.state.name && this.state.catererId) {
-    //   API.saveMeal({
-    //     name: this.state.title,
-    //     type: this.state.type,
-    //     description: this.state.description
-        
   
-    //   })
-    //     .then(res => this.loadBooks())
-    //     .catch(err => console.log(err));
-    // }
   };
 
   setCheckboxChange = event => {
