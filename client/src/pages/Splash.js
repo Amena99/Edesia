@@ -14,7 +14,7 @@ import {Image} from "../components/Image";
 // import SplashModal from "../components/SplashModal";
 import Modal from "react-bootstrap/Modal";
 import Button from "react-bootstrap/Button";
-
+import Form from "react-bootstrap/Form";
 
 class Splash extends Component {
   constructor(){
@@ -24,9 +24,13 @@ class Splash extends Component {
     this.state = {
       isShowing: false,
       login: false,
-      signup: false
+      signup: false,
+      eloginEmail: "",
+      eloginPassword: "",
+      eloginError: false
     };
 
+    this.handleInputChange = this.handleInputChange.bind(this);
   };
 
   openLoginHandler = () => {
@@ -54,6 +58,27 @@ class Splash extends Component {
     })
   };
 
+  processEdesiaLogin = ()=> {
+    console.log(this.state.eloginEmail);
+    console.log(this.state.eloginPassword);
+    
+    if (this.state.eloginEmail === "edesia@gmail.com" && this.state.eloginPassword === "mealtime"){
+      console.log("correct credentials");
+    }else{
+      this.setState({
+        eloginError: true
+      })
+    }
+    this.clearELoginState();
+  };
+
+  clearELoginState = ()=>{
+    this.setState({
+      eloginEmail: "",
+      eloginPassword: ""
+    })
+  }
+
   deleteBook = id => {
     API.deleteBook(id)
       .then(res => this.loadBooks())
@@ -61,13 +86,15 @@ class Splash extends Component {
   };
 
   handleInputChange = event => {
-    // const target = event.target;
-    // const value = target.type === "checkbox" ? target.checked : target.value;
-    // const name = target.name;
+    console.log("Inside Handle Input Change");
     
-    // this.setState({
-    //   [name]: value
-    // });
+    //important to use event.target
+    const {value, name} = event.target;
+
+    this.setState({
+      [name]: value
+    });
+    
   };
 
   handleFormSubmit = event => {
@@ -119,20 +146,45 @@ class Splash extends Component {
                     className="modal"
                     id="loginModal"
                     show={this.state.login}
-                    close={this.closeModalHandler}
+                    onHide={this.closeModalHandler}
                     title={"Log In"}>
-                       Login ID:
-                       Password:
+                      <h4>Edesia LogIn</h4>
+                        <Form>
+                          <Form.Group controlId="formGroupEmail">
+                            <Form.Label>Username (Your email address)</Form.Label>
+                            <Form.Control 
+                            type="email" 
+                            placeholder="email" 
+                            value={this.state.eloginEmail}
+                            name="eloginEmail"
+                            onChange={this.handleInputChange}
+                            />
+                          </Form.Group>
+                          <Form.Group controlId="formGroupPassword">
+                            <Form.Label>Password</Form.Label>
+                            <Form.Control 
+                            type="password" 
+                            placeholder="password" 
+                            value={this.state.eloginPassword}
+                            name="eloginPassword"
+                            onChange={this.handleInputChange}
+                            />
+                          </Form.Group>
+                        </Form>
+                        {this.state.eloginError ? <div><p id="edesialoginError">Oops! It looks like your username/password was incorrect! Please try again. </p></div> : null}
+                        <Button variant="primary" type="submit" onClick={this.processEdesiaLogin}>
+                          Log In
+                        </Button>
                 </Modal>
                 <Modal
                     className="modal"
                     id="signupModal"
                     show={this.state.signup}
-                    close={this.closeModalHandler}
+                    onHide={this.closeModalHandler}
                     title={"Sign Up"}>
                        Your Name:
                        Password:
-                </Modal> */}
+                </Modal> 
              {/* </div> */}
             {/* <SplashModal>
               show={this.state.login}
