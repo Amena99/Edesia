@@ -12,23 +12,8 @@ class MealListing extends Component {
   constructor(props){
     super(props);
     this.state = {
-    books: [],
-    name: "",
-    type: "",
-    description: "",
-    photoURL: "",
-    allergen_dairy: 0,
-    allergen_treenuts: 0,
-    allergen_peanuts: 0,
-    allergen_wheat: 0,
-    allergen_fish: 0,
-    allergen_crustaceanshellfish: 0,
-    allergen_eggs: 0,
-    allergen_soya: 0,
-    date_available: "",
-    time_available: "",
-    quantity: "",
-    catererId: ""
+    meals: []
+    
   };
 
   this.handleInputChange = this.handleInputChange.bind(this);
@@ -36,15 +21,21 @@ class MealListing extends Component {
   
 
   componentDidMount() {
-    // this.loadBooks();
+    this.loadMeals();
   }
 
-  loadBooks = () => {
-    // API.getBooks()
-    //   .then(res =>
-    //     this.setState({ books: res.data, title: "", author: "", synopsis: "" })
-    //   )
-    //   .catch(err => console.log(err));
+  loadMeals = () => {
+    
+    API.getMeals()
+      .then(res =>{
+          this.setState({ meals: res.data });
+          console.log("inside then of get Meals");
+      }
+      
+      )
+      .catch(err => console.log("loggin error", err));
+
+      console.log(this.state.meals);
   };
 
   deleteBook = id => {
@@ -176,9 +167,9 @@ class MealListing extends Component {
             <Jumbotron>
               <h1>Meals On My List</h1>
             </Jumbotron>
-            {this.state.books.length ? (
+            {this.state.meals.length ? (
               <List>
-                {this.state.books.map(book => (
+                {this.state.meals.map(book => (
                   <ListItem key={book._id}>
                     <Link to={"/books/" + book._id}>
                       <strong>
