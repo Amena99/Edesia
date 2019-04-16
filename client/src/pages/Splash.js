@@ -63,7 +63,8 @@ class Splash extends Component {
     console.log(this.state.eloginPassword);
     
     if (this.state.eloginEmail === "edesia@gmail.com" && this.state.eloginPassword === "mealtime"){
-      console.log("correct credentials");
+      
+      window.location.replace("http://localhost:3000/meals")
     }else{
       this.setState({
         eloginError: true
