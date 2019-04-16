@@ -7,6 +7,7 @@ import { Col, Row, Container } from "../components/Grid";
 import { List, ListItem } from "../components/List";
 import { Input, TextArea, FormBtn } from "../components/Form";
 import { Checkbox } from "../components/Checkbox";
+import {MealTile } from "../components/MealTile";
 
 class MealListing extends Component {
   constructor(props){
@@ -30,14 +31,17 @@ class MealListing extends Component {
       .then(res =>{
           this.setState({ meals: res.data });
           console.log("inside then of get Meals");
+          this.logState();
       }
       
       )
       .catch(err => console.log("loggin error", err));
 
-      console.log(this.state.meals);
+     
   };
-
+  logState= () => {
+    console.log(this.state.meals);
+  }
   deleteBook = id => {
     API.deleteBook(id)
       .then(res => this.loadBooks())
@@ -101,9 +105,31 @@ class MealListing extends Component {
 
   render() {
     return (
-      <Container fluid>
-        <Row>
-          <Col size="md-6">
+     
+      <div className='bg-color' style={{
+        backgroundColor: '#ec1c2a'
+      }}>
+            <Jumbotron>
+              <h1>Meals On My List</h1>
+            </Jumbotron>
+            <Container>
+            <Row>
+                {this.state.meals.map(meal => (
+                  <Col size="md-4">
+                    <Link to={"/books/" + meal._id}>
+                      <MealTile
+                          id={meal.id}
+                          title={meal.name}
+                          date={meal.time_available}
+                          photo_url={meal.photo_URL}
+                          type={meal.type}
+                        />
+                    </Link>
+                  </Col>
+                ))}
+          </Row>
+          <Row>
+          <Col size="md-12">
             <Jumbotron>
               <h1>Enter Details to Add New Meal:</h1>
             </Jumbotron>
@@ -163,29 +189,10 @@ class MealListing extends Component {
               </FormBtn>
             </form>
           </Col>
-          <Col size="md-6 sm-12">
-            <Jumbotron>
-              <h1>Meals On My List</h1>
-            </Jumbotron>
-            {this.state.meals.length ? (
-              <List>
-                {this.state.meals.map(book => (
-                  <ListItem key={book._id}>
-                    <Link to={"/books/" + book._id}>
-                      <strong>
-                        {book.title} by {book.author}
-                      </strong>
-                    </Link>
-                    <DeleteBtn onClick={() => this.deleteBook(book._id)} />
-                  </ListItem>
-                ))}
-              </List>
-            ) : (
-              <h3>No Results to Display</h3>
-            )}
-          </Col>
+        
         </Row>
       </Container>
+    </div>
     );
   }
 }

@@ -38,15 +38,14 @@ Object.keys(db).forEach(function(modelName) {
 });
 
 
-// const syncDB = async () => {
-//   await db['Benefactor'].realSync();
-//   await db['Category'].realSync();
-//   await db['User'].realSync();
-//   await db['Project'].realSync();
-//   await db['UserProject'].realSync();
-// }
+const syncDB = async () => {
+  await db['Meal'].realSync();
+  await db['User'].realSync();
+  await db['UserMeal'].realSync();
 
-// syncDB();
+}
+
+syncDB();
 
 
 db.sequelize = sequelize;

@@ -4,12 +4,12 @@ const db = require("../models");
 module.exports = {
   findAll: function(req, res) {
     console.log("Inside findAll");
-    console.log("req.query is", req.query);
-    db.Meal
-      .findAll({})
+    db.Meal.findAll({})
       // .sort({ date: -1 })
-      .then(dbModel => res.json(dbModel))
-      .catch(err => res.status(422).json(err));
+      .then(function(meals){
+         res.json(meals)
+      }); 
+      // .catch(err => res.status(422).json(err));
   },
   findById: function(req, res) {
     db.Meal
