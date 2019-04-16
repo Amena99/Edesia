@@ -106,8 +106,7 @@ class MealListing extends Component {
   render() {
     return (
      
-      <div className='bg-color' style={{
-        backgroundColor: '#ec1c2a'
+      <div className='bg-color' style={{backgroundColor: '#ec1c2a'
       }}>
             <Jumbotron>
               <h1>Meals On My List</h1>
