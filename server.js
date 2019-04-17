@@ -1,4 +1,5 @@
 const express = require("express");
+const stripe = require("stripe")("sk_test_4eC39HqLyjWDarjtT1zdp7dc");
 
 // const mongoose = require("mongoose");
 
@@ -15,6 +16,7 @@ const PORT = process.env.PORT || 3001;
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 app.use(bodyParser.json());
+app.use(require("body-parser").text());
 
 // Serve up static assets (usually on heroku)
 if (process.env.NODE_ENV === "production") {
