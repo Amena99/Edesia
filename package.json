@@ -28,6 +28,7 @@
     "if-env": "^1.0.4",
     "mongoose": "^5.3.16",
     "mysql2": "^1.6.5",
+    "paymentfont": "^1.2.5",
     "react": "^16.8.6",
     "react-bootstrap": "^1.0.0-beta.8",
     "react-dom": "^16.8.6",

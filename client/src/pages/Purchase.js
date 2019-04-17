@@ -14,10 +14,12 @@ class Purchase extends Component {
     
     this.state = {
     meal: {}
+    
     };
 
    
     this.submit = this.submit.bind(this);
+
   }
   
   
@@ -38,7 +40,8 @@ class Purchase extends Component {
   async submit(ev) {
     console.log("User clicked buy.");
   }
-
+  
+  
   render() {
     return (
       <Container fluid>
@@ -52,9 +55,9 @@ class Purchase extends Component {
           </Col>
         </Row>
         <Row>
-          <Col size="lg-12 md-offset-2">
+          <Col size="lg-12">
         
-          <StripeProvider apiKey="pk_test_TYooMQauvdEDq54NiTphI7jx">
+          <StripeProvider apiKey="pk_test_JxUthaafKzsvXPRtkVcNs2AN00jXKdRZKZ">
             <div className="example">
               <h1>React Stripe Elements Example</h1>
               <Elements>
