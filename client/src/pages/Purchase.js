@@ -5,11 +5,22 @@ import Jumbotron from "../components/Jumbotron";
 import MealPicTile from "../components/MealPicTile";
 import API from "../services/API";
 import Button from "react-bootstrap/Button";
+import CheckoutForm from "../components/CheckoutForm";
+import {Elements, StripeProvider} from 'react-stripe-elements';
 
-class MealDetail extends Component {
-  state = {
+class Purchase extends Component {
+  constructor(props) {
+    super(props);
+    
+    this.state = {
     meal: {}
-  };
+    };
+
+   
+    this.submit = this.submit.bind(this);
+  }
+  
+  
   // When this component mounts, grab the book with the _id of this.props.match.params.id
   // e.g. localhost:3000/books/599dcb67f0f16317844583fc
   componentDidMount() {
@@ -22,6 +33,10 @@ class MealDetail extends Component {
         meal: res.data
       })
     });
+  }
+
+  async submit(ev) {
+    console.log("User clicked buy.");
   }
 
   render() {
@@ -37,27 +52,19 @@ class MealDetail extends Component {
           </Col>
         </Row>
         <Row>
-          <Col size="lg-4 md-offset-2">
-          <MealPicTile
-          photo_url={this.state.meal.photo_URL}
-          title={this.state.meal.name}
-          >
-          </MealPicTile>
-         
+          <Col size="lg-12 md-offset-2">
+        
+          <StripeProvider apiKey="pk_test_TYooMQauvdEDq54NiTphI7jx">
+            <div className="example">
+              <h1>React Stripe Elements Example</h1>
+              <Elements>
+                <CheckoutForm />
+              </Elements>
+            </div>
+          </StripeProvider>
+     
+            
           </Col>
-       
-          <Col size="lg-8 md-offset-2">
-           <h4>{this.state.meal.name}</h4>
-           <br></br>
-           <p>{this.state.meal.description}</p>
-           <p>{this.state.meal.type}</p>
-           <p>Get it by: {this.state.meal.time_available}</p>
-           <p>${this.state.meal.quantity}/plate</p>
-           <Button variant="danger" href={`./purchase/${this.state.meal.id}`}>BUY</Button>
-           <br></br>
-           <p>{this.state.meal.quantity} plates left </p>
-           <p>allergens</p>
-           </Col>
         </Row>
         <Row>
           <Col size="md-2">
@@ -70,4 +77,4 @@ class MealDetail extends Component {
   }
 }
 
-export default MealDetail;
+export default Purchase;

@@ -32,6 +32,7 @@
     "react-dom": "^16.8.6",
     "react-helmet": "^5.2.0",
     "react-moment": "^0.9.2",
+    "react-stripe-elements": "^2.0.3",
     "sequelize": "^5.2.7",
     "styled-components": "^4.2.0"
   }
