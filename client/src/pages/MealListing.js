@@ -12,12 +12,13 @@ import {MealTile } from "../components/MealTile";
 class MealListing extends Component {
   constructor(props){
     super(props);
+
     this.state = {
     meals: []
-    
-  };
+    };
 
-  this.handleInputChange = this.handleInputChange.bind(this);
+    this.handleInputChange = this.handleInputChange.bind(this);
+    // this.navMealDetail = this.navMealDetail.bind(this);
   }
   
 
@@ -32,16 +33,19 @@ class MealListing extends Component {
           this.setState({ meals: res.data });
           console.log("inside then of get Meals");
           this.logState();
-      }
-      
-      )
+      })
       .catch(err => console.log("loggin error", err));
-
-     
   };
+
   logState= () => {
     console.log(this.state.meals);
   }
+
+  navMealDetail= () => {
+    console.log("logging clicked meal id", this.id);
+    // window.location.replace(`http://localhost:3000/meals/${this.id}`)
+  };
+
   deleteBook = id => {
     API.deleteBook(id)
       .then(res => this.loadBooks())
@@ -101,13 +105,14 @@ class MealListing extends Component {
             <Row>
                 {this.state.meals.map(meal => (
                   <Col size="md-4">
-                    <Link to={"/books/" + meal._id}>
+                    <Link to={"/meals/" + meal.id}>
                       <MealTile
                           id={meal.id}
                           title={meal.name}
                           date={meal.time_available}
                           photo_url={meal.photo_URL}
                           type={meal.type}
+                          onClick={this.navMealDetail}
                         />
                     </Link>
                   </Col>
@@ -162,7 +167,6 @@ class MealListing extends Component {
               name={"allergen_peanuts"}
               value={1}
               onChange={this.handleInputChange}
-            
               id={"peanuts"}
               />
               

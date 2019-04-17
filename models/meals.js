@@ -1,3 +1,4 @@
+const mealSeeds = require("../scripts/mealSeeds");
 
 module.exports =  (sequelize, DataTypes) => {
     let Meal = sequelize.define("Meal", {
@@ -39,6 +40,14 @@ module.exports =  (sequelize, DataTypes) => {
         });
 
     }
+
+     // Insert the meal seed data
+    Meal.realSync = async () => {
+        await Meal.sync()
+        return await Meal.bulkCreate(mealSeeds, {
+            ignoreDuplicates: true
+        });
+    };
 
     return Meal;
 }

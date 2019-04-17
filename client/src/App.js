@@ -16,7 +16,7 @@ function App() {
           <Route exact path="/" component={Splash} />
           <Route exact path="/meals" component={MealListing} />
           <Route exact path="/meals/:id" component={MealDetail} />
-          <Route component={Books} />
+          <Route component={MealListing} />
         </Switch>
       </div>
     </Router>

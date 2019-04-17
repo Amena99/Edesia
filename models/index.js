@@ -40,8 +40,8 @@ Object.keys(db).forEach(function(modelName) {
 
 const syncDB = async () => {
   await db['Meal'].realSync();
-  await db['User'].realSync();
-  await db['UserMeal'].realSync();
+  // await db['User'].realSync();
+  // await db['UserMeal'].realSync();
 
 }
 
