@@ -7,8 +7,8 @@ export default {
     return axios.get("/api/meals");
   },
   // Gets the book with the given id
-  getBook: function(id) {
-    return axios.get("/api/books/" + id);
+  getMealById: function(id) {
+    return axios.get("/api/meals/" + id);
   },
   // Deletes the book with the given id
   deleteBook: function(id) {

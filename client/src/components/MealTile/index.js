@@ -7,7 +7,7 @@ import "./style.css";
 export function MealTile({ id, title, type, date, photo_url }) {
     return (
         <div className='tile-full'>
-            <a href={'/find/projects/' + id}>
+            {/* <a href={'/find/projects/' + id}> */}
 
             <Row className="flex-wrap-reverse">
                 <Col size='md-12'>
@@ -23,7 +23,7 @@ export function MealTile({ id, title, type, date, photo_url }) {
                 </Col>
             </Row>
                             
-            </a>
+            {/* </a> */}
         </div>
     );
 }

@@ -1,0 +1,42 @@
+.tile-image {
+    /* border-top-left-radius: 1rem; */
+    /* border-top-right-radius: 1rem; */
+
+}
+
+.tile-date {
+    position: absolute;
+    top: 8px;
+    right: 24px;
+    background-color: white;
+    /* border-radius: .5rem; */
+    padding: .25rem;
+    color: #447604 
+
+}
+
+.tile-content {
+    color: #447604 ;
+    
+}
+
+.tile-title {
+    text-align: right;
+    padding-right: 1rem;
+    color: #447604 ;
+
+}
+
+.tile-category {
+    text-align: right;
+    padding-right: 1rem;
+    color: #447604 ;
+
+}
+
+.tile-full {
+    /* box-shadow: 0 10px 16px 0 #15C300,0 6px 20px 0 #15C300 !important; */
+    margin: 10px;
+    border-radius: 1rem;
+    background-color: white;
+}

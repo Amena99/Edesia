@@ -31,7 +31,7 @@ class MealDetail extends Component {
           <Col size="md-12">
             <Jumbotron>
               <h1>
-                 Nav Bar with Links
+                 Purchase Page
               </h1>
             </Jumbotron>
           </Col>
@@ -53,7 +53,7 @@ class MealDetail extends Component {
            <p>{this.state.meal.type}</p>
            <p>Get it by: {this.state.meal.time_available}</p>
            <p>${this.state.meal.quantity}/plate</p>
-           <Button variant="danger" href={`/purchase/${this.state.meal.id}`}>BUY</Button>
+           <Button variant="danger" href={`./purchase/${this.state.meal.id}`}>BUY</Button>
            <br></br>
            <p>{this.state.meal.quantity} plates left </p>
            <p>allergens</p>

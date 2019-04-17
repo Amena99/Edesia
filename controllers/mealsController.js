@@ -1,20 +1,26 @@
 const db = require("../models");
 
-// Defining methods for the booksController
+// Defining methods for the mealsController
 module.exports = {
   findAll: function(req, res) {
     console.log("Inside findAll");
     db.Meal.findAll({})
-      // .sort({ date: -1 })
       .then(function(meals){
          res.json(meals)
       }); 
-      // .catch(err => res.status(422).json(err));
   },
   findById: function(req, res) {
+    console.log("inside controller findbyID")
     db.Meal
-      .findById(req.params.id)
-      .then(dbModel => res.json(dbModel))
+      .findOne({
+        where: {
+          id: (req.params.id)
+        }
+      })
+      .then(mealDetails => {
+        console.log("inside then of controller findbyID")
+        res.json(mealDetails)
+      })
       .catch(err => res.status(422).json(err));
   },
   create: function(req, res) {
