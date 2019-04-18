@@ -17,12 +17,12 @@ export function Row({ id, fluid, className2, children }) {
 export function Col({ id, size, children }) {
   return (
     <div
+      id={id}
       className={size
         .split(" ")
         .map(size => "col-" + size)
         .join(" ")}
-      id={id}
-    >
+      >
       {children}
     </div>
   );

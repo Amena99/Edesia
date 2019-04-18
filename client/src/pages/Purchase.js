@@ -7,6 +7,7 @@ import API from "../services/API";
 import Button from "react-bootstrap/Button";
 import CheckoutForm from "../components/CheckoutForm";
 import {Elements, StripeProvider} from 'react-stripe-elements';
+import "./Splash.css";
 
 class Purchase extends Component {
   constructor(props) {
@@ -46,7 +47,7 @@ class Purchase extends Component {
     return (
       <Container fluid>
         <Row>
-          <Col size="md-12">
+          <Col size="md-12 md-offset-2">
             <Jumbotron>
               <h1>
                  Purchase Page
@@ -55,26 +56,18 @@ class Purchase extends Component {
           </Col>
         </Row>
         <Row>
-          <Col size="lg-12">
+          <Col size="lg-12 md-offset-2">
         
           <StripeProvider apiKey="pk_test_JxUthaafKzsvXPRtkVcNs2AN00jXKdRZKZ">
             <div className="example">
-              <h1>React Stripe Elements Example</h1>
               <Elements>
                 <CheckoutForm />
               </Elements>
             </div>
           </StripeProvider>
-     
-            
           </Col>
         </Row>
-        <Row>
-          <Col size="md-2">
-            <h3>Meal Description</h3>
-
-          </Col>
-        </Row>
+      
       </Container>
     );
   }

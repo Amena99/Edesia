@@ -1,5 +1,10 @@
 import React, {Component} from 'react';
 import {CardElement, CardNumberElement, CardExpiryElement, CardCVCElement, injectStripe} from 'react-stripe-elements';
+import Card from "react-bootstrap/Card";
+import Button from "react-bootstrap/Button";
+import "./CheckoutForm.css";
+import { Col, Row, Container } from "../Grid";
+
 
 class CheckoutForm extends Component {
   constructor(props) {
@@ -72,19 +77,47 @@ class CheckoutForm extends Component {
   
   render() {
     return (
-      <div className="checkout">
-        <p>Would you like to complete the purchase?</p>
-        <p>Enter Credit Card Number:</p>
-        <div>
-        <span>Card number</span>
-        <CardNumberElement style={{base: {fontSize: '18px'}}} onChange={this.findBrand}/>
-        <span className="brand"><i className="pf pf-credit-card" id="brand-icon"></i></span>
-        </div>
-        <br></br>
-        <span>Expiration:</span><span><CardExpiryElement/></span><span>CVC:</span><span><CardCVCElement/></span>
-
-        <button onClick={this.submit}>Send</button>
-      </div>
+      <Card className="bootstrapCard flex-row flex-wrap">
+        <Card.Body className="cardBody">
+          <Container>
+            <Row>
+              <Col size="md-12">
+                <div className="checkout">
+                <Row>
+                  
+                  
+                  <Card.Title className="cardTitle border-0"><img src="https://i.imgur.com/im8vfaAt.jpg" alt="edesia logo" id="checkoutLogo"></img>Checkout</Card.Title>
+                </Row>
+                  
+                  <hr className="lineSeparator"></hr>
+                <Card.Subtitle className="cardSubTitle">Please enter payment information to complete purchase.</Card.Subtitle>
+                  <div>
+                  <span>Credit Card Number:</span><CardNumberElement className="cardNumber" style={{base: {fontSize: '30px'}}} onChange={this.findBrand}/>
+                    <span className="brand"><i className="pf pf-credit-card" id="brand-icon"></i></span>
+                  </div>
+                  </div>
+              </Col>
+            </Row>
+            <Row>
+              <Col size="md-6">
+                <span>Expiration:</span><span><CardExpiryElement className="cardNumber" style={{base: {fontSize: '30px'}}}/></span>
+              </Col>
+              <Col size="md-6">
+                <span>CVC:</span><span><CardCVCElement className="cardNumber" style={{base: {fontSize: '30px'}}}/></span>
+              </Col>
+            </Row>
+            <Row className="payButtonRow">
+              <Col size="md-10">
+              </Col>
+              <Col size="md-2">
+                <Button className="btn-danger" onClick={this.submit}>Send</Button>
+              </Col>
+              
+            </Row>
+          </Container>
+        </Card.Body>
+      </Card>
+      
     );
   }
 }

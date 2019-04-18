@@ -1,0 +1,28 @@
+.bootstrapCard{
+    /* width: 60%; */
+    border: #ec1c2a solid 2px;
+}
+.lineSeparator{
+    border: #ec1c2a solid 1px; 
+
+}
+.cardNumber{
+    border: rgb(80, 77, 77) 1px solid;
+    border-radius: 5px;
+    background-color: whitesmoke;
+    height: 40px;
+    font-size: 30px;
+    margin-bottom: 15px;
+}
+.cardSubTitle{
+    margin-bottom: 25px;
+}
+.cardTitle{
+    font-size: 40px;
+    margin-left: 20px;
+}
+#checkoutLogo{
+    height: 50px;
+    width: 50px;
+    margin-right:10px;
+}
