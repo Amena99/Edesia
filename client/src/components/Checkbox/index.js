@@ -6,7 +6,7 @@ export function Checkbox(props){
     return(
         
         <div className="form-check">
-            <input className="form-check-input" type={props.type} name={props.name} value={props.value}></input>
+            <input className="form-check-input" type={props.type} name={props.name} value={props.value} onChange={props.onChange}></input>
                 <label className="form-check-label" for={props.name}>
                 {props.label}
                 </label>

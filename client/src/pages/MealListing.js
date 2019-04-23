@@ -69,9 +69,11 @@ class MealListing extends Component {
   };
 
   handleInputChange = event => {
+    console.log("Inside handle input chage");
     const target = event.target;
     const value = target.type === "checkbox" ? target.checked : target.value;
     const name = target.name;
+    console.log("even target value", value);
    
     this.setState({
       [name]: value
@@ -205,7 +207,7 @@ class MealListing extends Component {
               checked={this.state.allergen_peanuts}
               label={"Peanuts"}
               name={"allergen_peanuts"}
-              value={1}
+              // value={true}
               onChange={this.handleInputChange}
               id={"peanuts"}
               />
