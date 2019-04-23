@@ -24,10 +24,13 @@ module.exports = {
       .catch(err => res.status(422).json(err));
   },
   create: function(req, res) {
-    db.Meal
-      .create(req.body)
+    const newMeal = req.body;
+    console.log(newMeal);
+
+    db.Meal.create(newMeal)
       .then(dbMeal => {
         console.log("dbMeal in controller", dbMeal)
+        res.send(dbMeal);
       })
       .catch(err => res.status(422).json(err));
   },

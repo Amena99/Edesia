@@ -11,11 +11,11 @@ export default {
     return axios.get("/api/meals/" + id);
   },
   // Deletes the book with the given id
-  deleteBook: function(id) {
-    return axios.delete("/api/books/" + id);
+  deleteMeal: function(id) {
+    return axios.delete("/api/meals/" + id);
   },
   // Saves a book to the database
   saveMeal: function(mealData) {
-    return axios.post("/api/books", mealData);
+    return axios.post("/api/meals", mealData);
   }
 };

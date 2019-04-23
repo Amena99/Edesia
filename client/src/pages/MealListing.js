@@ -15,19 +15,18 @@ class MealListing extends Component {
 
     this.state = {
     meals: [],
-    
       name: "",
       description: "",
       photoURL: "",
-      allergen_dairy: "",
-      allergen_treenuts: "",
-      allergen_peanuts: "",
-      allergen_wheat: "",
-      allergen_fish: "",
-      allergen_crustaceanshellfish: "",
-      allergen_eggs: "",
-      allergen_soya: "",
-      time_available: "",
+      allergen_dairy: 0,
+      allergen_treenuts: 0,
+      allergen_peanuts: 0,
+      allergen_wheat: 0,
+      allergen_fish: 0,
+      allergen_crustaceanshellfish: 0,
+      allergen_eggs: 0,
+      allergen_soya: 0,
+      time_available: "4:00",
       quantity: "",
       catererId: ""
     }
@@ -114,9 +113,13 @@ class MealListing extends Component {
       
     }
     console.log(newMeal);
-    
+
     API.saveMeal(newMeal)
-    .then(console.log("Saved Meal."));
+    .then(res => {
+      console.log("Saved Meal.")
+      console.log(res);
+    })
+    .catch(err => console.log(err));
   };
 
   setCheckboxChange = event => {
