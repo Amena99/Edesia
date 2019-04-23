@@ -14,8 +14,25 @@ class MealListing extends Component {
     super(props);
 
     this.state = {
-    meals: []
-    };
+    meals: [],
+    
+      name: "",
+      description: "",
+      photoURL: "",
+      allergen_dairy: "",
+      allergen_treenuts: "",
+      allergen_peanuts: "",
+      allergen_wheat: "",
+      allergen_fish: "",
+      allergen_crustaceanshellfish: "",
+      allergen_eggs: "",
+      allergen_soya: "",
+      time_available: "",
+      quantity: "",
+      catererId: ""
+    }
+    
+    
 
     this.handleInputChange = this.handleInputChange.bind(this);
     // this.navMealDetail = this.navMealDetail.bind(this);
@@ -65,21 +82,41 @@ class MealListing extends Component {
   handleFormSubmit = event => {
     event.preventDefault();
 
-    console.log(this.state.name);
-    console.log(this.state.description);
-    console.log(this.state.photoURL);
-    console.log(this.state.allergen_dairy);
-    console.log(this.state.allergen_treenuts);
-    console.log(this.state.allergen_peanuts);
-    console.log(this.state.allergen_wheat);
-    console.log(this.state.allergen_fish);
-    console.log(this.state.allergen_crustaceanshellfish);
-    console.log(this.state.allergen_eggs);
-    console.log(this.state.allergen_soya);
-    console.log(this.state.time_available);
-    console.log(this.state.quantity);
-    console.log(this.state.catererId);
-  
+    // console.log(this.state.name);
+    // console.log(this.state.description);
+    // console.log(this.state.photoURL);
+    // console.log(this.state.allergen_dairy);
+    // console.log(this.state.allergen_treenuts);
+    // console.log(this.state.allergen_peanuts);
+    // console.log(this.state.allergen_wheat);
+    // console.log(this.state.allergen_fish);
+    // console.log(this.state.allergen_crustaceanshellfish);
+    // console.log(this.state.allergen_eggs);
+    // console.log(this.state.allergen_soya);
+    // console.log(this.state.time_available);
+    // console.log(this.state.quantity);
+    // console.log(this.state.catererId);
+    console.log(this.state);
+    let newMeal = {
+      name: this.state.name,
+      description: this.state.description,
+      photoURL: this.state.photoURL,
+      allergen_dairy: this.state.allergen_dairy,
+      allergen_treenuts: this.state.allergen_treenuts,
+      allergen_peanuts: this.state.allergen_peanuts,
+      allergen_wheat: this.state.allergen_wheat,
+      allergen_fish: this.state.allergen_fish,
+      allergen_crustaceanshellfish: this.state.allergen_crustaceanshellfish,
+      allergen_eggs: this.state.allergen_eggs,
+      allergen_soya: this.state.allergen_soya,
+      time_available: this.state.time_available,
+      quantity: this.state.quantity
+      
+    }
+    console.log(newMeal);
+    
+    API.saveMeal(newMeal)
+    .then(console.log("Saved Meal."));
   };
 
   setCheckboxChange = event => {
