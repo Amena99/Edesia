@@ -4,7 +4,7 @@ import Jumbotron from "../components/Jumbotron";
 import API from "../services/API";
 import { Link } from "react-router-dom";
 import { Col, Row, Container } from "../components/Grid";
-import { List, ListItem } from "../components/List";
+import Nav from "../components/Nav";
 import { Input, TextArea, FormBtn } from "../components/Form";
 import { Checkbox } from "../components/Checkbox";
 import {MealTile } from "../components/MealTile";
@@ -56,6 +56,7 @@ class MealListing extends Component {
      
       <div className='bg-color' 
       style={{backgroundColor: '#ec1c2a'}}>
+            <Nav/>
             <Jumbotron>
               <h1>Meals On My List</h1>
             </Jumbotron>

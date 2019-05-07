@@ -1,0 +1,47 @@
+
+#navbar{
+    background-color:#ec1c2a;
+    height: 75px;
+}
+
+#navlink1, #navlink2, #navlink3{
+    color: white !important;
+    font-size: 15px;
+    margin-right: 2px;
+}
+
+#nav-name{
+    color: white !important;
+    font-size: 20px;
+    padding-left: 30px;
+}
+
+.img-responsive {
+    height: auto;
+    width: auto;
+    max-height: 72px;
+    max-width: 250px;
+}
+
+.nav-link{
+    margin-right: 5px;
+}
+
+.navbar-toggler{
+    border-top:solid, 1px, white;
+    color: gray;
+}
+
+.dropdown{
+    background: white;
+}
+
+#search-button{
+    /* background-color: white; */
+    border: solid 1px white;
+    color: white;
+    
+}
+.fa{
+    color: white;
+}

@@ -5,6 +5,7 @@ import MealDetail from "./pages/MealDetail";
 import Purchase from "./pages/Purchase";
 import Splash from "./pages/Splash";
 import NewMeal from "./pages/NewMeal";
+import ShoppingBasket from "./pages/ShoppingBasket";
 
 
 function App() {
@@ -17,6 +18,7 @@ function App() {
           <Route exact path="/meals/:id" component={MealDetail} />
           <Route exact path="/purchase/:id" component={Purchase} />
           <Route exact path="/newmeal" component={NewMeal} />
+          <Route exact path="/shoppingbasket" component={ShoppingBasket} />
           <Route component={MealListing} />
         </Switch>
       </div>
