@@ -10,11 +10,11 @@ import { Checkbox } from "../components/Checkbox";
 import "./Splash.css";
 import {Helmet} from "react-helmet";
 import {Image} from "../components/Image";
-// import Button from "../components/Button";
-// import SplashModal from "../components/SplashModal";
 import Modal from "react-bootstrap/Modal";
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
+import {Card} from "react-bootstrap"; 
+
 
 class Splash extends Component {
   constructor(){
@@ -22,6 +22,7 @@ class Splash extends Component {
    
 
     this.state = {
+      meals: [],
       isShowing: false,
       login: false,
       signup: false,
@@ -32,6 +33,10 @@ class Splash extends Component {
 
     this.handleInputChange = this.handleInputChange.bind(this);
   };
+
+  componentDidMount () {
+    this.getMealsSplash();
+  }
 
   openLoginHandler = () => {
     console.log("Inside openLoginHandler");
@@ -102,14 +107,35 @@ class Splash extends Component {
 
   };
 
-  setCheckboxChange = event => {
-    // event.preventDefault();
-    // const { name, value } = event.target;
-    // this.setState({
-    //   [name]: value
-    // });
+  getGeolocation = () => {
+    if (navigator.geolocation) {
+      console.log('Geolocation is supported!');
+    }
+    else {
+      console.log('Geolocation is not supported for this Browser/OS.');
+    }
+    let startPos;
+    const geoSuccess = function(position) {
+    startPos = position;
+    console.log(startPos.coords.latitude);
+    console.log(startPos.coords.longitude);
+    };
+    navigator.geolocation.getCurrentPosition(geoSuccess);
+  };
 
-  }
+  getMealsSplash = () => {
+    // this.state.coords ? (
+    //   API.getMealsByLoc
+    //   ) : (
+      API.getMealsSplash()
+      .then(res => {
+        this.setState({ meals: res.data });
+        console.log(res.data);
+        console.log("inside then of Meals Splash");
+      })
+      .catch(err => console.log(err));
+  };
+  
 
   render() {
     return (
@@ -118,16 +144,11 @@ class Splash extends Component {
       <style>{'body { background-color: #ec1c2a; }'}</style>
       </Helmet>
       <Container fluid id={"splashContainer"}>
-        <Row fluid className2="text-center" id={"mainlogoRow"}>
-          <Col size="md-12 sm-12" id={"splashCol"}>
-            <Row fluid className2="text-center" id="logoRow">
-              <Image 
-              src="./assets/02-01-copy.jpg"
-              divid="mainLogo"
-              /> 
-            </Row>
-          </Col>  
-        </Row>
+        {/* <Row fluid className2="text-center" id={"mainlogoRow"}>
+          <Col size="md-6 sm-12" id={"splashCol"}>
+            
+          </Col>   */}
+     
         {/* <Row fluid className2="text-center" id="buttonsRow">
           <Col size="md-12 sm-12">
              
@@ -136,13 +157,41 @@ class Splash extends Component {
         {/* <div>
                 { this.state.isShowing ? <div onClick={this.closeModalHandler} className="back-drop"></div> : null } */}
 
-                <Row fluid className2="text-center" id="lbuttonRow">
-                 <Button id="signup" className="open-modal-btn" label="Log In" onClick={this.openLoginHandler}>Log In</Button>
+                <Row className="text-center" id="lbuttonRow">
+                  <Col size="md-6" >
+                    <Row fluid className="text-center" id="logoRow">
+                      <Image 
+                      src="./assets/02-01-copy.jpg"
+                      divid="mainLogo"
+                      /> 
+                    </Row>
+                    <h4 onClick={this.getGeolocation} id="show-meals-text">Show Meals Near Me <i class="fa fa-angle-double-right"></i></h4>
+                    <Button id="signup" className="open-modal-btn" label="Log In" onClick={this.openLoginHandler}>Log In</Button>
+                    <Button id="signup" label="Sign Up" onClick={this.openSignupHandler}>Sign Up</Button>
+                  </Col>
+                  <Col size="md-6" id="right-col" >
+                  
+                  {this.state.meals.map(meal => (
+                    <Row>
+                      <img src={meal.photo_URL}></img>
+                    <Card style={{width: '18rem'}}>
+                      <Card.Body>
+                        <Card.Title>{meal.name}</Card.Title>
+                        <Card.Text>
+                          {meal.description}
+                          <i class="fa fa-angle-double-right"></i>
+                        </Card.Text>
+                      </Card.Body>
+                    </Card>
+                    {/* <div>
+                    <i class="fa fa-angle-double-right"></i>
+                    </div> */}
+                  </Row>  
+                ))}
+                   
+                  </Col>
                 </Row>
-                <Row fluid className2="text-center" id="sbuttonRow">
-                <Button id="signup" label="Sign Up" onClick={this.openSignupHandler}>Sign Up</Button>
-                </Row>
-               <Modal
+                <Modal
                     className="modal"
                     id="loginModal"
                     show={this.state.login}
@@ -177,13 +226,13 @@ class Splash extends Component {
                         </Button>
                 </Modal>
                 <Modal
-                    className="modal"
-                    id="signupModal"
-                    show={this.state.signup}
-                    onHide={this.closeModalHandler}
-                    title={"Sign Up"}>
-                       Your Name:
-                       Password:
+                  className="modal"
+                  id="signupModal"
+                  show={this.state.signup}
+                  onHide={this.closeModalHandler}
+                  title={"Sign Up"}>
+                      Your Name:
+                      Password:
                 </Modal> 
              {/* </div> */}
             {/* <SplashModal>
@@ -204,7 +253,8 @@ class Splash extends Component {
                 <Button variant="primary">Login</Button>
               </Modal.Footer>
             </Modal> */}
-
+           
+        
       </Container>
 
       </div>

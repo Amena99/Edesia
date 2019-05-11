@@ -6,6 +6,11 @@ export default {
     console.log("inside API services");
     return axios.get("/api/meals");
   },
+  // Splash meals
+  getMealsSplash: function() {
+    console.log("inside API services");
+    return axios.get("/api/meals/splash");
+  },
   // Gets the book with the given id
   getMealById: function(id) {
     return axios.get("/api/meals/" + id);

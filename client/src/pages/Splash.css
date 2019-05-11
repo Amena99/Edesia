@@ -2,8 +2,8 @@
 {
    width: 500px;
    height: 100px;
-   /* overflow: hidden; */
 }
+
 #login, 
 #signup{
     background-color: white;
@@ -28,39 +28,27 @@
 }
 #logoRow{
     padding-top: 200px;
-    display: flex;
-    justify-content: center;
+    /* display: flex; */
+    /* justify-content: center; */
 }
 #buttonsRow{
     padding-top: 100px;
 }
 
 #lbuttonRow{
-    padding-top: 100px;
+    /* padding-top: 100px; */
 }
-/* #signup span {
-    
-    display: inline-block;
-    position: relative;
-    transition: 0.5s;
-  }
 
-#signup span:after {
-   
-    position: absolute;
-    opacity: 0;
-    top: 0;
-    right: -20px;
-    transition: 0.5s;
-  } */
+#edesialoginError{
+    color: red;
+}
 
-/* #signup:hover span:after {
-     cursor: pointer;
-     content: '\00bb';
-     opacity: 1;
-    right: 0;
-  } */
+#show-meals-text{
+    cursor: pointer;
+    color: white;
+    margin-top: 50px;
+}
 
-  #edesialoginError{
-      color: red;
-  }
+#right-col{
+    background-color: white;
+}

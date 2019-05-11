@@ -9,6 +9,14 @@ module.exports = {
          res.json(meals)
       }); 
   },
+  findSplash: function(req, res){
+    console.log("Inside find splash");
+    db.Meal.findAll({
+      limit: 5
+    }).then(function (meals){
+      res.json(meals)
+    });
+  },
   findById: function(req, res) {
     console.log("inside controller findbyID")
     db.Meal
