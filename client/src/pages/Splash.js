@@ -27,7 +27,8 @@ class Splash extends Component {
       lat: 0,
       lon: 0,
       appID: "j6fSczqGs8cAjnkGBtB6",
-      appCode: "SZyKi2kW8vZJrLbA__a88A"
+      appCode: "SZyKi2kW8vZJrLbA__a88A",
+      userZipcode: ""
     };
     this.handleInputChange = this.handleInputChange.bind(this);
   };
@@ -147,7 +148,13 @@ class Splash extends Component {
     // console.log(address);
 
     API.getZipcode(this.state.lat, this.state.lon, this.state.appID, this.state.appCode)
-    .then(res => console.log("res", res))
+    .then(res =>{
+      console.log("zipcode", res.data.Response.View[0].Result[0].Location.Address.PostalCode)
+      const userZipcode = res.data.Response.View[0].Result[0].Location.Address.PostalCode;
+      this.setState({
+        userZipcode
+      })
+    } )
     .catch(err => console.log("error", err));
   }
 
