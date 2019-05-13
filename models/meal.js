@@ -21,32 +21,43 @@ module.exports =  (sequelize, DataTypes) => {
         allergen_soya: DataTypes.BOOLEAN,
         date_available: DataTypes.DATE,
         time_available: DataTypes.TIME,
-        quantity: DataTypes.INTEGER
+        quantity: DataTypes.INTEGER,
+        zipcodes: DataTypes.JSON,
+        catererId: {
+            field: "CatererId",
+            type: DataTypes.INTEGER,
+            allowNull: true,
+            defaultValue: 0
+        }
     })
 
     Meal.associate = function (models) {
         //Each meal has many users (as customers) through UserMeal 
-        Meal.belongsToMany(models.User, {
-            through: "UserMeal",
-            // foreignKey: "userId",
-            onDelete: "CASCADE",
-            onUpdate: "CASCADE"
-        });
+        // Meal.belongsToMany(models.User, {
+        //     through: "UserMeal",
+        //     // foreignKey: "userId",
+        //     onDelete: "CASCADE",
+        //     onUpdate: "CASCADE"
+        // });
+
+    Meal.belongsTo(models.User, {
+        foreignKey: "catererId",
+        targetKey: "id"
+    })
 
         //Each meal has User, named as 'catererId'
-        Meal.belongsTo(models.User, {
-            foreignKey: "catererId",
-            targetKey: "id"
-        });
-
+        // Meal.belongsTo(models.User, {
+        //     foreignKey: "catererId",
+        //     targetKey: "id"
+        // });
     }
 
-     // Insert the meal seed data
+    // // Insert the meal seed data
     Meal.realSync = async () => {
         await Meal.sync()
-        return await Meal.bulkCreate(mealSeeds, {
-            ignoreDuplicates: true
-        });
+        return await Meal.bulkCreate(mealSeeds, 
+            {ignoreDuplicates: true}
+        );
     };
 
     return Meal;

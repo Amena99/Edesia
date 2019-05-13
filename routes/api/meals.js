@@ -8,7 +8,11 @@ router.route("/")
 
 // Matches with "/api/meals/splash"
 router.route("/splash")
-  .get(mealsController.findSplash)
+  .get(mealsController.findSplash);
+
+// Matches with "/api/meals/splash"
+router.route("/splash/:zipcode")
+  .get(mealsController.findByZip)
 
 // Matches with "/api/meals/:id"
 router

@@ -1,12 +1,8 @@
 import React, { Component } from "react";
-import DeleteBtn from "../components/DeleteBtn";
-import Jumbotron from "../components/Jumbotron";
+import Geocode from "react-geocode";
 import API from "../services/API";
 import { Link } from "react-router-dom";
 import { Col, Row, Container } from "../components/Grid";
-import { List, ListItem } from "../components/List";
-import { Input, TextArea, FormBtn } from "../components/Form";
-import { Checkbox } from "../components/Checkbox";
 import "./Splash.css";
 import {Helmet} from "react-helmet";
 import {Image} from "../components/Image";
@@ -19,8 +15,6 @@ import {Card} from "react-bootstrap";
 class Splash extends Component {
   constructor(){
     super();
-   
-
     this.state = {
       meals: [],
       isShowing: false,
@@ -28,14 +22,21 @@ class Splash extends Component {
       signup: false,
       eloginEmail: "",
       eloginPassword: "",
-      eloginError: false
+      eloginError: false,
+      lat: 0,
+      lon: 0
     };
-
     this.handleInputChange = this.handleInputChange.bind(this);
   };
 
   componentDidMount () {
     this.getMealsSplash();
+  }
+
+  componentDidUpdate () {
+    if(!(this.state.lat === 0 && this.state.lon ===0)){
+      console.log(this.state);
+    }
   }
 
   openLoginHandler = () => {
@@ -82,32 +83,22 @@ class Splash extends Component {
       eloginEmail: "",
       eloginPassword: ""
     })
-  }
-
-  deleteBook = id => {
-    API.deleteBook(id)
-      .then(res => this.loadBooks())
-      .catch(err => console.log(err));
   };
+
+  logState = () =>{
+    console.log(this.state);
+  }
 
   handleInputChange = event => {
     console.log("Inside Handle Input Change");
-    
     //important to use event.target
     const {value, name} = event.target;
-
     this.setState({
       [name]: value
     });
-    
   };
 
-  handleFormSubmit = event => {
-    // event.preventDefault();
-
-  };
-
-  getGeolocation = () => {
+  getGeolocation = async () => {
     if (navigator.geolocation) {
       console.log('Geolocation is supported!');
     }
@@ -115,26 +106,64 @@ class Splash extends Component {
       console.log('Geolocation is not supported for this Browser/OS.');
     }
     let startPos;
-    const geoSuccess = function(position) {
-    startPos = position;
-    console.log(startPos.coords.latitude);
-    console.log(startPos.coords.longitude);
+    var latlon = {
+      lat: 0,
+      lon: 0
+      };
+    
+    const geoSuccess = async (position) => {
+      startPos = await position;
+      latlon.lat = await startPos.coords.latitude;
+      latlon.lon = await startPos.coords.longitude;
+      console.log(latlon.lat);
+      console.log(latlon.lon);
+      this.setState({
+        lat: latlon.lat,
+        lon: latlon.lon
+      })
+      this.getZipcode();
     };
-    navigator.geolocation.getCurrentPosition(geoSuccess);
+
+    const getLoc = async () => {
+      const latlonc =  await navigator.geolocation.getCurrentPosition(geoSuccess);
+      console.log(latlonc);
+    }
+    await getLoc();
+    // this.getZipcode();
+    
   };
+
+  getZipcode = async () => {
+    console.log("Inside getZipCode");
+    console.log("in gZ", this.state.lat);
+    console.log("in gZ", this.state.lon);
+    Geocode.setApiKey("AIzaSyA6Z3NvpiwM19ki9aJRAZbERhwYK1XIYBo");
+    Geocode.enableDebug();
+    const response = await Geocode.fromLatLng(` "42.0364761", "-87.7489040"`);
+    console.log(response);
+  }
 
   getMealsSplash = () => {
     // this.state.coords ? (
-    //   API.getMealsByLoc
-    //   ) : (
-      API.getMealsSplash()
+      let zipcode = 60077;
+      API.getMealsByLoc(zipcode)
       .then(res => {
-        this.setState({ meals: res.data });
-        console.log(res.data);
-        console.log("inside then of Meals Splash");
+        console.log("Inside then of getMealsbyLoc");
+        console.log(res);
+        this.setState({meals: res.data});
       })
       .catch(err => console.log(err));
+    //   ) : (
+      // API.getMealsSplash()
+      // .then(res => {
+      //   this.setState({ meals: res.data });
+      //   console.log(res.data);
+      //   console.log("inside then of Meals Splash");
+      // })
+      // .catch(err => console.log(err));
   };
+
+
   
 
   render() {
@@ -165,7 +194,7 @@ class Splash extends Component {
                       divid="mainLogo"
                       /> 
                     </Row>
-                    <h4 onClick={this.getGeolocation} id="show-meals-text">Show Meals Near Me <i class="fa fa-angle-double-right"></i></h4>
+                    <h4 onClick={this.getGeolocation} id="show-meals-text">Show Meals Near Me <i className="fa fa-angle-double-right"></i></h4>
                     <Button id="signup" className="open-modal-btn" label="Log In" onClick={this.openLoginHandler}>Log In</Button>
                     <Button id="signup" label="Sign Up" onClick={this.openSignupHandler}>Sign Up</Button>
                   </Col>
@@ -173,19 +202,19 @@ class Splash extends Component {
                   
                   {this.state.meals.map(meal => (
                     <Row>
-                      <img src={meal.photo_URL}></img>
-                    <Card style={{width: '18rem'}}>
+                      <img src={meal.photo_URL} height={"100px"} width={"200px"}></img>
+                    <Card className="border-0 border-dark" style={{width: '18rem'}}>
                       <Card.Body>
                         <Card.Title>{meal.name}</Card.Title>
                         <Card.Text>
                           {meal.description}
-                          <i class="fa fa-angle-double-right"></i>
-                        </Card.Text>
+                          
+                          <p className="time-avail-text">Available by {meal.time_available} today.</p>
+                        </Card.Text> 
+                        
                       </Card.Body>
                     </Card>
-                    {/* <div>
-                    <i class="fa fa-angle-double-right"></i>
-                    </div> */}
+                    <Link to={"/meals/" + meal.id}><i className="	fa fa-angle-double-right fa-5x" id="right-arrows"></i></Link>
                   </Row>  
                 ))}
                    

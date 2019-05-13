@@ -17,6 +17,19 @@ module.exports = {
       res.json(meals)
     });
   },
+  findByZip: function(req, res){
+    console.log("Inside find by zip");
+    db.Meal.findAll({
+      where: {
+        zipcodes: {
+            "$contains": { zip: [60077]}
+        }
+      },
+      include: [db.User]
+    }).then(function (meals){
+      res.json(meals)
+    });
+  },
   findById: function(req, res) {
     console.log("inside controller findbyID")
     db.Meal

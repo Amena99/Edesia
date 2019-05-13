@@ -1,3 +1,4 @@
+const userSeeds = require("../scripts/userSeeds");
 
 module.exports = function(sequelize, DataTypes) {
     //Defining User Table
@@ -32,18 +33,25 @@ module.exports = function(sequelize, DataTypes) {
             type: DataTypes.BOOLEAN,
             defaultValue: false
         },
+        zipcode_served1: DataTypes.CHAR(5),
+        zipcode_served2: DataTypes.CHAR(5),
+        zipcode_served3: DataTypes.CHAR(5),
+        zipcode_served4: DataTypes.CHAR(5),
+        zipcode_served5: DataTypes.CHAR(5),
+        zipcode_served6: DataTypes.CHAR(5),
+        zipcode_served7: DataTypes.CHAR(5),
     });
 
     User.associate = function (models) {
 
         //CREATE ASSOC W/ MEAL THRU USERMEAL
         //CREATES FIELD NAMED "CUSTOMERID"
-        User.belongsToMany(models.Meal, {
-            through: "UserMeal",
-            foreignKey: "CustomerId",
-            onDelete: "CASCADE",
-            onUpdate: "CASCADE"
-        });
+        // User.belongsToMany(models.Meal, {
+        //     through: "UserMeal",
+        //     foreignKey: "CustomerId",
+        //     onDelete: "CASCADE",
+        //     onUpdate: "CASCADE"
+        // });
 
         User.hasMany(models.Meal, {
             onDelete: "cascade"
@@ -53,6 +61,13 @@ module.exports = function(sequelize, DataTypes) {
         //     onDelete: "cascade"
         // });
     }
+    // Insert the user seed data
+    User.realSync = async () => {
+        await User.sync()
+        return await User.bulkCreate(userSeeds, {
+            ignoreDuplicates: true
+        });
+    };
 
     return User;
 }

@@ -52,3 +52,15 @@
 #right-col{
     background-color: white;
 }
+
+card{
+    border:none;
+    margin-top: 50px;
+    color: red;
+}
+#right-arrows{
+    color: red;
+}
+.time-avail-text{
+    color: orange;
+}

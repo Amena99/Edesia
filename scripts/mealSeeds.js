@@ -79,6 +79,9 @@ module.exports = [
       allergen_soya: 0,
       date_available: "2019-04-21",
       time_available: "12:00:00",
-      quantity: 7
-    },
+      quantity: 7,
+      zipcodes: {
+        zip: [60077, 60614, 60049, 6819]
+      }
+    }
   ]

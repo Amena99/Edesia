@@ -32,21 +32,19 @@ Object.keys(db).forEach(function(modelName) {
   if (db[modelName].associate) {
     db[modelName].associate(db);
   }
-  // if (db[modelName].realSync) {
-  //   db[modelName].realSync();
-  // }
+
 });
 
 
 const syncDB = async () => {
   await db['Meal'].realSync();
-  // await db['User'].realSync();
-  // await db['UserMeal'].realSync();
+  await db['User'].realSync();
+ 
 
 }
 
 syncDB();
-
+ // await db['UserMeal'].realSync();
 
 db.sequelize = sequelize;
 db.Sequelize = Sequelize;
