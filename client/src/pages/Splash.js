@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import Geocode from "react-geocode";
+
 import API from "../services/API";
 import { Link } from "react-router-dom";
 import { Col, Row, Container } from "../components/Grid";
@@ -24,7 +25,9 @@ class Splash extends Component {
       eloginPassword: "",
       eloginError: false,
       lat: 0,
-      lon: 0
+      lon: 0,
+      appID: "j6fSczqGs8cAjnkGBtB6",
+      appCode: "SZyKi2kW8vZJrLbA__a88A"
     };
     this.handleInputChange = this.handleInputChange.bind(this);
   };
@@ -137,10 +140,15 @@ class Splash extends Component {
     console.log("Inside getZipCode");
     console.log("in gZ", this.state.lat);
     console.log("in gZ", this.state.lon);
-    Geocode.setApiKey("AIzaSyA6Z3NvpiwM19ki9aJRAZbERhwYK1XIYBo");
-    Geocode.enableDebug();
-    const response = await Geocode.fromLatLng(` "42.0364761", "-87.7489040"`);
-    console.log(response);
+    // Geocode.setApiKey("AIzaSyA6Z3NvpiwM19ki9aJRAZbERhwYK1XIYBo");
+    // Geocode.enableDebug();
+    // const response = await Geocode.fromLatLng(` "42.0364761", "-87.7489040"`);
+    // const address = response.results[0].formatted_address;
+    // console.log(address);
+
+    API.getZipcode(this.state.lat, this.state.lon, this.state.appID, this.state.appCode)
+    .then(res => console.log("res", res))
+    .catch(err => console.log("error", err));
   }
 
   getMealsSplash = () => {

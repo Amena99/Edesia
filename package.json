@@ -36,6 +36,7 @@
     "react-helmet": "^5.2.0",
     "react-moment": "^0.9.2",
     "react-stripe-elements": "^2.0.3",
+    "reverse-geocoding": "^3.0.1",
     "sequelize": "^5.2.7",
     "stripe": "^6.28.0",
     "styled-components": "^4.2.0"

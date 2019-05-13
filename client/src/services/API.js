@@ -1,6 +1,15 @@
 import axios from "axios";
 
 export default {
+  //get user zipCode with lat and lon
+  getZipcode: function(lat, lon, appID, appCode) {
+    console.log("Inside API.getZipcode");
+    console.log("lat", lat);
+    console.log("lon", lon);
+    console.log("appID", appID);
+    console.log("appCode", appCode);
+    return axios.get(`https://reverse.geocoder.api.here.com/6.2/reversegeocode.json?app_id=${appID}&app_code=${appCode}&mode=retrieveAddresses&prox=${lat},${lon}`);
+  },
   // Gets all books
   getMeals: function() {
     console.log("inside API services");
