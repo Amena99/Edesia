@@ -11,7 +11,7 @@ import Modal from "react-bootstrap/Modal";
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
 import {Card} from "react-bootstrap"; 
-
+import Moment from 'react-moment';
 
 class Splash extends Component {
   constructor(){
@@ -234,7 +234,7 @@ class Splash extends Component {
                         <Card.Title>{meal.name}</Card.Title>
                         <Card.Text>
                           {meal.description}
-                          <p className="time-avail-text">Available by {meal.time_available} today.</p>
+                          <p className="time-avail-text">Available by  { <Moment className="time" format="LT" date={meal.date_available}/>} today.</p>
                          <p className="time-avail-text"> Serving Zipcode: {userZipcode ? `${this.state.userZipcode}`: `${meal.zipcode1}`} </p>
                         </Card.Text> 
                         
