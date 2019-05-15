@@ -29,6 +29,9 @@ export default {
   getMealById: function(id) {
     return axios.get("/api/meals/" + id);
   },
+  searchMeals: function(searchQuery) {
+    return axios.get("api/meals/search/"+ searchQuery);
+  },
   // Deletes the book with the given id
   deleteMeal: function(id) {
     return axios.delete("/api/meals/" + id);

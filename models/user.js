@@ -62,6 +62,11 @@ module.exports = function(sequelize, DataTypes) {
         // });
     }
     // Insert the user seed data
+    const seed = () =>{
+        return Promise.all([
+            
+        ])
+    }
     User.realSync = async () => {
         await User.sync()
         return await User.bulkCreate(userSeeds, {

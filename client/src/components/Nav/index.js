@@ -1,28 +1,29 @@
 import React from "react";
 import "./style.css";
+import { PromiseProvider } from "mongoose";
 
-function Nav() {
+function Nav(props) {
   return (
-    <nav class="navbar navbar-expand-lg navbar-light " id="navbar">
-        <a class="navbar-brand mr-0 mainnavtxt" id="nav-name" href="/"><img src="https://i.imgur.com/bYGAMEj.jpg" alt="edesia logo" class="img-responsive" height="100%"></img></a>
-            <button class="navbar-toggler ml-1" id="nav-toggle" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
+    <nav className="navbar navbar-expand-lg navbar-light " id="navbar">
+        <a className="navbar-brand mr-0 mainnavtxt" id="nav-name" href="/"><img src="https://i.imgur.com/bYGAMEj.jpg" alt="edesia logo" className="img-responsive" height="100%"></img></a>
+            <button className="navbar-toggler ml-1" id="nav-toggle" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                    <span className="navbar-toggler-icon"></span>
             </button>
-        <div class="navbar-collapse collapse text-right" id="navbarSupportedContent">
-          <ul class="navbar-nav ml-auto">
-            <li class="navbar-nav ml-auto">
-            <form class="form-inline my-2 my-lg-0">
-              <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search"/>
-              <button class="btn my-2 my-sm-0" id="search-button" type="submit">Search</button>
+        <div className="navbar-collapse collapse text-right" id="navbarSupportedContent">
+          <ul className="navbar-nav ml-auto">
+            <li className="navbar-nav ml-auto">
+            <form className="form-inline my-2 my-lg-0">
+              <input className="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" />
+              <button className="btn my-2 my-sm-0" id="search-button" type="submit" onClick={props.onClick}>Search</button>
             </form>
             </li>
           </ul>
-            <ul class="navbar-nav ml-auto">
-                <li class="nav-item" id="github_fa">
-                    <a class="nav-link" href="/shoppingbasket"><i class="fa fa-shopping-basket fa-lg"></i></a> 
+            <ul className="navbar-nav ml-auto">
+                <li className="nav-item" id="github_fa">
+                    <a className="nav-link" href="/shoppingbasket"><i className="fa fa-shopping-basket fa-lg"></i></a> 
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link" id="navlink3" href="/contact" >Contact Us</a>
+                <li className="nav-item">
+                    <a className="nav-link" id="navlink3" href="/contact" >Contact Us</a>
                 </li>
             </ul>
         </div>  

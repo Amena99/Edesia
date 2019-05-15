@@ -1,4 +1,6 @@
 const db = require("../models");
+var Sequelize = require("sequelize");
+const Op = Sequelize.Op;
 
 // Defining methods for the mealsController
 module.exports = {
@@ -19,14 +21,24 @@ module.exports = {
   },
   findByZip: function(req, res){
     console.log("Inside find by zip");
+    console.log("res in findByZip", req.params.zipcode);
+    let zipcode = req.params.zipcode;
     db.Meal.findAll({
       where: {
-        zipcodes: {
-            "$contains": { zip: [60077]}
-        }
+        [Op.or]: [{zipcode1: zipcode},
+                  {zipcode2: zipcode},
+                  {zipcode3: zipcode},
+                  {zipcode4: zipcode},
+                  {zipcode5: zipcode},
+                  {zipcode6: zipcode},
+                  {zipcode7: zipcode},
+                  {zipcode8: zipcode},
+                  {zipcode9: zipcode},
+                  {zipcode10: zipcode}]  
       },
-      include: [db.User]
-    }).then(function (meals){
+      include: [db.User],
+      limit: 5
+    }).then(meals=>{
       res.json(meals)
     });
   },
@@ -43,6 +55,40 @@ module.exports = {
         res.json(mealDetails)
       })
       .catch(err => res.status(422).json(err));
+  },
+  searchByKeyword: function(req, res){
+    console.log("Inside controller.searchByKeyword");
+    const keyword = "apple turnover";
+    console.log("keyword:"+ keyword);
+    db.Meal.findAll({
+      logging: console.log,
+      where: {
+          [Op.or]: [
+            {name: {
+              [Op.like]: [keyword]
+              }
+            },
+            {type: {
+              [Op.like]: [keyword]
+              }
+            },
+            {description: {
+              [Op.like]: [keyword]
+              }
+            }
+          ]
+          }
+        
+                  
+      })
+      .then(searchMeals => {
+        console.log(searchMeals.length);
+        console.log(searchMeals[0].toJSON())
+        console.log(searchMeals[1].toJSON())
+        // res.json(searchMeals)
+        console.log("Inside then contrllr.searchByKeyW");
+      })
+      .catch(err => res.status(422).json(err))
   },
   create: function(req, res) {
     const newMeal = req.body;

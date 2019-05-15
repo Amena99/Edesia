@@ -14,15 +14,14 @@ class MealListing extends Component {
     super(props);
 
     this.state = {
-    meals: []
+    meals: [],
+    searchQuery: "lunch"
      
     }
-    // this.navMealDetail = this.navMealDetail.bind(this);
   }
   
-
   componentDidMount() {
-    this.loadMeals();
+    // this.loadMeals();
   }
 
   loadMeals = () => {
@@ -42,24 +41,26 @@ class MealListing extends Component {
 
   navMealDetail= () => {
     console.log("logging clicked meal id", this.id);
-    // window.location.replace(`http://localhost:3000/meals/${this.id}`)
   };
 
-  deleteBook = id => {
-    API.deleteBook(id)
-      .then(res => this.loadBooks())
-      .catch(err => console.log(err));
-  };
+  searchMeals = ()=>{
+    console.log("inside search Meals");
+    let searchQuery = this.state.searchQuery;
+    console.log("searchQuery", searchQuery);
+    API.searchMeals(searchQuery)
+    .then(res=>{
+      console.log("Inside then of searchMeals")
+      console.log("res of searchMeals", res);
+    }).catch(err => console.log("err is searchMeals",err));
+
+  }
 
   render() {
     return (
      
       <div className='bg-color' 
       style={{backgroundColor: '#ec1c2a'}}>
-            <Nav/>
-            <Jumbotron>
-              <h1>Meals On My List</h1>
-            </Jumbotron>
+            <Nav onClick={this.searchMeals}/>
             <Container>
             <Row>
                 {this.state.meals.map(meal => (

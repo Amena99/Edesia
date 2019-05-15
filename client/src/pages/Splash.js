@@ -28,12 +28,13 @@ class Splash extends Component {
       lon: 0,
       appID: "j6fSczqGs8cAjnkGBtB6",
       appCode: "SZyKi2kW8vZJrLbA__a88A",
-      userZipcode: ""
+      userZipcode: null
     };
     this.handleInputChange = this.handleInputChange.bind(this);
   };
 
   componentDidMount () {
+    this.logState();
     this.getMealsSplash();
   }
 
@@ -41,6 +42,7 @@ class Splash extends Component {
     if(!(this.state.lat === 0 && this.state.lon ===0)){
       console.log(this.state);
     }
+   
   }
 
   openLoginHandler = () => {
@@ -141,11 +143,6 @@ class Splash extends Component {
     console.log("Inside getZipCode");
     console.log("in gZ", this.state.lat);
     console.log("in gZ", this.state.lon);
-    // Geocode.setApiKey("AIzaSyA6Z3NvpiwM19ki9aJRAZbERhwYK1XIYBo");
-    // Geocode.enableDebug();
-    // const response = await Geocode.fromLatLng(` "42.0364761", "-87.7489040"`);
-    // const address = response.results[0].formatted_address;
-    // console.log(address);
 
     API.getZipcode(this.state.lat, this.state.lon, this.state.appID, this.state.appCode)
     .then(res =>{
@@ -154,34 +151,39 @@ class Splash extends Component {
       this.setState({
         userZipcode
       })
+      this.getMealsSplash();
     } )
     .catch(err => console.log("error", err));
   }
 
   getMealsSplash = () => {
-    // this.state.coords ? (
-      let zipcode = 60077;
-      API.getMealsByLoc(zipcode)
-      .then(res => {
-        console.log("Inside then of getMealsbyLoc");
-        console.log(res);
-        this.setState({meals: res.data});
-      })
-      .catch(err => console.log(err));
-    //   ) : (
-      // API.getMealsSplash()
-      // .then(res => {
-      //   this.setState({ meals: res.data });
-      //   console.log(res.data);
-      //   console.log("inside then of Meals Splash");
-      // })
-      // .catch(err => console.log(err));
+    if(this.state.userZipcode) {
+        console.log("inside if of this.state.userZipcode")
+        let zipcode = this.state.userZipcode;
+        API.getMealsByLoc(zipcode)
+        .then(res => {
+          console.log("Inside then of getMealsbyLoc");
+          console.log(res);
+          this.setState({meals: res.data});
+        })
+        .catch(err => console.log(err))
+    } else{
+      console.log("inside else of this.state.userZipcode")
+        API.getMealsSplash()
+        .then(res => {
+          this.setState({ meals: res.data });
+          console.log("res.data in then of meals splash", res.data);
+          console.log("inside then of Meals Splash");
+        })
+        .catch(err => console.log(err))
+    }
   };
 
 
   
 
   render() {
+    const userZipcode = this.state.userZipcode;
     return (
       <div>
       <Helmet>
@@ -203,28 +205,37 @@ class Splash extends Component {
 
                 <Row className="text-center" id="lbuttonRow">
                   <Col size="md-6" >
+                    <Row fluid className="text-center" id="links-splash-row">
                     <Row fluid className="text-center" id="logoRow">
                       <Image 
                       src="./assets/02-01-copy.jpg"
-                      divid="mainLogo"
+                      id="mainLogo"
+                      width="367px"
+                      height="137px"
                       /> 
                     </Row>
-                    <h4 onClick={this.getGeolocation} id="show-meals-text">Show Meals Near Me <i className="fa fa-angle-double-right"></i></h4>
+                    
+                  <h4 onClick={this.getGeolocation} id="show-meals-text">Show Meals Near Me <i className="fa fa-angle-double-right"></i></h4>
+                 
                     <Button id="signup" className="open-modal-btn" label="Log In" onClick={this.openLoginHandler}>Log In</Button>
                     <Button id="signup" label="Sign Up" onClick={this.openSignupHandler}>Sign Up</Button>
+                   
+                   </Row>  
                   </Col>
                   <Col size="md-6" id="right-col" >
-                  
+                  <Row id="browse-option-splash">
+                  <a href="/meals">Browse all meals<i className="fa fa-angle-double-right"/></a>
+                  </Row>
                   {this.state.meals.map(meal => (
-                    <Row>
-                      <img src={meal.photo_URL} height={"100px"} width={"200px"}></img>
+                    <Row id="meal-row">
+                      <img src={meal.photo_URL} height={"165px"} width={"200px"} class="splash-meal-img"></img>
                     <Card className="border-0 border-dark" style={{width: '18rem'}}>
                       <Card.Body>
                         <Card.Title>{meal.name}</Card.Title>
                         <Card.Text>
                           {meal.description}
-                          
                           <p className="time-avail-text">Available by {meal.time_available} today.</p>
+                         <p className="time-avail-text"> Serving Zipcode: {userZipcode ? `${this.state.userZipcode}`: `${meal.zipcode1}`} </p>
                         </Card.Text> 
                         
                       </Card.Body>

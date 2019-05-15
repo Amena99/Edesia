@@ -12,7 +12,11 @@ router.route("/splash")
 
 // Matches with "/api/meals/splash"
 router.route("/splash/:zipcode")
-  .get(mealsController.findByZip)
+  .get(mealsController.findByZip);
+
+// Matches with "/api/meals/search/:searchQuery"
+router.route("/search/:searchQuery")
+  .get(mealsController.searchByKeyword);
 
 // Matches with "/api/meals/:id"
 router
