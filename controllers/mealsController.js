@@ -53,42 +53,42 @@ module.exports = {
       .then(mealDetails => {
         console.log("inside then of controller findbyID")
         res.json(mealDetails)
+        console.log(mealDetails.toJSON());
       })
       .catch(err => res.status(422).json(err));
   },
   searchByKeyword: function(req, res){
     console.log("Inside controller.searchByKeyword");
-    const keyword = "apple turnover";
+    const keyword = req.params.searchQuery;
     console.log("keyword:"+ keyword);
+    console.log("req.params", req.params.searchQuery);
     db.Meal.findAll({
-      logging: console.log,
+      // logging: console.log,
       where: {
           [Op.or]: [
             {name: {
-              [Op.like]: [keyword]
+              [Op.like]: [`%${keyword}%`]
               }
             },
             {type: {
-              [Op.like]: [keyword]
+              [Op.like]: [`%${keyword}%`]
               }
             },
             {description: {
-              [Op.like]: [keyword]
+              [Op.like]: [`%${keyword}%`]
               }
             }
           ]
           }
-        
-                  
-      })
-      .then(searchMeals => {
+        }).then(searchMeals => {
         console.log(searchMeals.length);
-        console.log(searchMeals[0].toJSON())
-        console.log(searchMeals[1].toJSON())
-        // res.json(searchMeals)
+        // JSON.parse(searchMeals);
+        // console.log(searchMeals[0].toJSON())
+        // console.log(searchMeals[1].toJSON())
+        res.status(200).json(searchMeals);
+        res.end();
         console.log("Inside then contrllr.searchByKeyW");
-      })
-      .catch(err => res.status(422).json(err))
+      }).catch(err => res.status(422).json(err))
   },
   create: function(req, res) {
     const newMeal = req.body;

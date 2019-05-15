@@ -17,7 +17,7 @@ export default {
   },
   // Splash meals
   getMealsSplash: function() {
-    console.log("inside API services");
+    console.log("inside API get meals splash");
     return axios.get("/api/meals/splash");
   },
   // Splash meals by Location
@@ -30,6 +30,7 @@ export default {
     return axios.get("/api/meals/" + id);
   },
   searchMeals: function(searchQuery) {
+    console.log("Inside API search by query");
     return axios.get("api/meals/search/"+ searchQuery);
   },
   // Deletes the book with the given id

@@ -1,8 +1,12 @@
-import React from "react";
+import React, {useState} from "react";
 import "./style.css";
 import { PromiseProvider } from "mongoose";
 
 function Nav(props) {
+  //create hook to hold search query name
+  //function to update state with query name
+  //pass query name to functoin thta takes it back to parent
+  const [searchQuery, setsearchQuery] = useState("");
   return (
     <nav className="navbar navbar-expand-lg navbar-light " id="navbar">
         <a className="navbar-brand mr-0 mainnavtxt" id="nav-name" href="/"><img src="https://i.imgur.com/bYGAMEj.jpg" alt="edesia logo" className="img-responsive" height="100%"></img></a>
@@ -13,8 +17,9 @@ function Nav(props) {
           <ul className="navbar-nav ml-auto">
             <li className="navbar-nav ml-auto">
             <form className="form-inline my-2 my-lg-0">
-              <input className="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" />
-              <button className="btn my-2 my-sm-0" id="search-button" type="submit" onClick={props.onClick}>Search</button>
+
+              <input className="form-control mr-sm-2" type="search" placeholder="Search Meals" aria-label="Search" name="searchQuery" value={props.searchQuery} onChange={props.handleInputChange}/>
+              <button className="btn my-2 my-sm-0" id="search-button" type="submit" onClick={props.handleFormSubmit}>Search</button>
             </form>
             </li>
           </ul>
