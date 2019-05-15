@@ -90,18 +90,17 @@ module.exports = {
         console.log("Inside then contrllr.searchByKeyW");
       }).catch(err => res.status(422).json(err))
   },
-  create: function(req, res) {
+  create: (req, res) => {
     const newMeal = req.body;
     console.log(newMeal);
 
     db.Meal.create(newMeal)
       .then(dbMeal => {
-        console.log("dbMeal in controller", dbMeal)
         res.send(dbMeal);
       })
       .catch(err => res.status(422).json(err));
   },
-  addToCart: function(req, res){
+  addToCart: (req, res)=> {
     console.log("Inside addToCart Ctrllr")
     db.Meal.findOne({
        logging: console.log,

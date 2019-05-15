@@ -8,6 +8,8 @@ import Button from "react-bootstrap/Button";
 import CheckoutForm from "../components/CheckoutForm";
 import {Elements, StripeProvider} from 'react-stripe-elements';
 import "./Splash.css";
+import Nav from "../components/Nav";
+
 
 class Purchase extends Component {
   constructor(props) {
@@ -46,16 +48,8 @@ class Purchase extends Component {
   render() {
     return (
       <Container fluid>
-        <Row>
-          <Col size="md-12 md-offset-2">
-            <Jumbotron>
-              <h1>
-                 Purchase Page
-              </h1>
-            </Jumbotron>
-          </Col>
-        </Row>
-        <Row>
+        <Nav/>
+        <Row id="purchase-row1">
           <Col size="lg-12 md-offset-2">
         
           <StripeProvider apiKey="pk_test_JxUthaafKzsvXPRtkVcNs2AN00jXKdRZKZ">

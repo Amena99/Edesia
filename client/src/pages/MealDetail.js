@@ -5,6 +5,9 @@ import Jumbotron from "../components/Jumbotron";
 import MealPicTile from "../components/MealPicTile";
 import API from "../services/API";
 import Button from "react-bootstrap/Button";
+import Nav from "../components/Nav";
+import "./MealDetail.css";
+import Moment from 'react-moment';
 
 class MealDetail extends Component {
   constructor(props){
@@ -42,8 +45,8 @@ class MealDetail extends Component {
   render() {
     return (
       <Container fluid>
-        
-        <Row>
+        <Nav />
+        <Row id="meal-detail">
           <Col size="lg-4 md-offset-2">
           <MealPicTile
           photo_url={this.state.meal.photo_URL}
@@ -56,23 +59,17 @@ class MealDetail extends Component {
           <Col size="lg-8 md-offset-2">
            <h4>{this.state.meal.name}</h4>
            <br></br>
-           <p>{this.state.meal.description}</p>
-           <p>{this.state.meal.type}</p>
-           <p>Get it by: {this.state.meal.time_available}</p>
-           <p>${this.state.meal.plateprice} / plate</p>
-           <Button variant="danger" onClick={this.handleFormSubmit}>BUY</Button>
+           <p className="meal-detail">{this.state.meal.description}</p>
+           <p className="meal-detail">Meal Type: {this.state.meal.type}</p>
+           <p className="meal-detail">Get it by: { <Moment className="time" format="LT" date={this.state.meal.date_available}/>}</p>
+           <p className="meal-detail">${this.state.meal.plateprice} / plate</p>
+           <Button variant="danger" href={`/purchase/${this.state.meal.id}`} >BUY</Button>
            {/* href={`/purchase/${this.state.meal.id}`} */}
            <br></br>
-           <p>{this.state.meal.quantity} plates left </p>
-           <p>allergens</p>
+           <p className="meal-detail">{this.state.meal.quantity} plates left </p>
            </Col>
         </Row>
-        <Row>
-          <Col size="md-2">
-            <h3>Meal Description</h3>
-
-          </Col>
-        </Row>
+        
       </Container>
     );
   }

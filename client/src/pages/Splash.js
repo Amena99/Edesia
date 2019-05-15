@@ -252,8 +252,8 @@ class Splash extends Component {
                     show={this.state.login}
                     onHide={this.closeModalHandler}
                     title={"Log In"}>
-                      <h4>Edesia LogIn</h4>
-                        <Form>
+                      <h4 id="login-title">Edesia Log In</h4>
+                        <Form id="login-form">
                           <Form.Group controlId="formGroupEmail">
                             <Form.Label>Username (Your email address)</Form.Label>
                             <Form.Control 
@@ -276,8 +276,8 @@ class Splash extends Component {
                           </Form.Group>
                         </Form>
                         {this.state.eloginError ? <div><p id="edesialoginError">Oops! It looks like your username/password was incorrect! Please try again. </p></div> : null}
-                        <Button variant="primary" type="submit" onClick={this.processEdesiaLogin}>
-                          Log In
+                        <Button id="login-button" variant="primary" type="submit" onClick={this.processEdesiaLogin}>
+                          Log In To Edesia
                         </Button>
                 </Modal>
                 <Modal
@@ -287,7 +287,11 @@ class Splash extends Component {
                   onHide={this.closeModalHandler}
                   title={"Sign Up"}>
                       Your Name:
+                      <br></br>
                       Password:
+                  <p>This modal under construction.</p>
+                  <p>Please click "Log In" and use guest credentials.</p>
+                  <p>Thank You!</p>
                 </Modal> 
              {/* </div> */}
             {/* <SplashModal>
