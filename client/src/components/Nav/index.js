@@ -18,7 +18,7 @@ function Nav(props) {
             <li className="navbar-nav ml-auto">
             <form className="form-inline my-2 my-lg-0">
 
-              <input className="form-control mr-sm-2" type="search" placeholder="Search Meals" aria-label="Search" name="searchQuery" value={props.searchQuery} onChange={props.handleInputChange}/>
+              <input className="form-control mr-sm-2" placeholder="Search Meals" aria-label="Search" name="searchQuery" value={props.searchQuery} onChange={props.handleInputChange}/>
               <button className="btn my-2 my-sm-0" id="search-button" type="submit" onClick={props.handleFormSubmit}>Search</button>
             </form>
             </li>

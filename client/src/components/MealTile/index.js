@@ -4,7 +4,8 @@ import Moment from 'react-moment';
 import { Row, Col } from "../Grid";
 import "./style.css";
 
-export function MealTile({ id, title, type, date, photo_url }) {
+
+export function MealTile({ id, title, type, date, price, photo_url }) {
     return (
         <div className='tile-full'>
             {/* <a href={'/find/projects/' + id}> */}
@@ -13,13 +14,16 @@ export function MealTile({ id, title, type, date, photo_url }) {
                 <Col size='md-12'>
                     <img className='img-fluid tile-image' src={photo_url} alt={title}></img>
                     {/* <div className='tile-date'><Moment format="YYYY/MM/DD">{date}</Moment></div> */}
-                    <div className='tile-date'>{date}</div>
+                    <div className='tile-date'>
+                    <Moment className="time" format="LT" date={date}/>
+                    </div>
                 </Col>
             </Row>
             <Row>
                 <Col size="md-12 tile-content">
                     <div className="tile-title"><strong>{title}</strong></div>
-                    <div className='tile-category'>{type}</div>
+                    <div className="price-cate"><span className='meal-price'>${price}</span><span className="tile-category">{type}</span></div>
+                    
                 </Col>
             </Row>
                             

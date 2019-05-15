@@ -11,8 +11,11 @@
     background-color: white;
     border-radius: .5rem;
     padding: .25rem;
-    color: #447604 
+    color: blue; 
 
+}
+.time{
+    color: blue;
 }
 
 .tile-content {
@@ -20,18 +23,27 @@
     
 }
 
-.tile-title {
-    text-align: right;
+.tile-title
+{
     padding-right: 1rem;
     color: #447604 ;
-
 }
-
-.tile-category {
-    text-align: right;
+.tile-category 
+{ 
     padding-right: 1rem;
     color: #447604 ;
-
+}
+.price-cate{
+    display: flex;
+    justify-content: flex-end;
+}
+.meal-price
+{
+    text-align: right;
+    padding-right: 1rem;
+    color: red ;
+    font-weight: bolder;
+    font-size: 
 }
 
 .tile-full {

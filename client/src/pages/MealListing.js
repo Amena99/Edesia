@@ -27,18 +27,17 @@ class MealListing extends Component {
   loadMeals = () => {
     if(!(this.state.searchQuery === null)){
       this.searchMeals();
+    }else{
+       API.getMeals()
+      .then(res => {
+          this.setState({ 
+            meals: res.data,
+          });
+          console.log("inside then of get Meals");
+          this.logState();
+      })
+      .catch(err => console.log("loggin error", err));
     }
-    // }else{
-    //    API.getMeals()
-    //   .then(res => {
-    //       this.setState({ 
-    //         meals: res.data,
-    //       });
-    //       console.log("inside then of get Meals");
-    //       this.logState();
-    //   })
-    //   .catch(err => console.log("loggin error", err));
-    // }
    
   };
 
@@ -59,7 +58,8 @@ class MealListing extends Component {
   //     })
   // }
 
-  handleFormSubmit = ()=> {
+  handleFormSubmit = (event)=> {
+    event.preventDefault();
     console.log("inside search Meals");
     let searchQuery = this.state.searchQuery;
     console.log("searchQuery", searchQuery);
@@ -92,7 +92,8 @@ class MealListing extends Component {
                       <MealTile
                           id={meal.id}
                           title={meal.name}
-                          date={meal.time_available}
+                          date={meal.date_available}
+                          price={meal.plateprice}
                           photo_url={meal.photo_URL}
                           type={meal.type}
                           onClick={this.navMealDetail}

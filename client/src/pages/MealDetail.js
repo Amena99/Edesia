@@ -52,7 +52,7 @@ class MealDetail extends Component {
            <p>{this.state.meal.description}</p>
            <p>{this.state.meal.type}</p>
            <p>Get it by: {this.state.meal.time_available}</p>
-           <p>${this.state.meal.quantity}/plate</p>
+           <p>${this.state.meal.plateprice} / plate</p>
            <Button variant="danger" href={`/purchase/${this.state.meal.id}`}>BUY</Button>
            <br></br>
            <p>{this.state.meal.quantity} plates left </p>

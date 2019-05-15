@@ -22,6 +22,7 @@ module.exports =  (sequelize, DataTypes) => {
         date_available: DataTypes.DATE,
         time_available: DataTypes.TIME,
         quantity: DataTypes.INTEGER,
+        plateprice: DataTypes.DOUBLE,
         zipcode1: DataTypes.INTEGER,
         zipcode2: DataTypes.INTEGER,
         zipcode3: DataTypes.INTEGER,
