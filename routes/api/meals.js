@@ -18,6 +18,10 @@ router.route("/splash/:zipcode")
 router.route("/search/:searchQuery")
   .get(mealsController.searchByKeyword);
 
+// Matches with "/api/meals/add/:id"
+router.route("/add/:id")
+  .get(mealsController.addToCart);
+
 // Matches with "/api/meals/:id"
 router
   .route("/:id")

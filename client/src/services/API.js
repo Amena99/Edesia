@@ -33,6 +33,10 @@ export default {
     console.log("Inside API search by query");
     return axios.get("api/meals/search/"+ searchQuery);
   },
+  addToCart: function(id){
+    console.log("Inside add to cart API");
+    return axios.get("api/meals/add/"+id);
+  },
   // Deletes the book with the given id
   deleteMeal: function(id) {
     return axios.delete("/api/meals/" + id);

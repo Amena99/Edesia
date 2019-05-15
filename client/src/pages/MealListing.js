@@ -51,13 +51,6 @@ class MealListing extends Component {
     this.setState({ searchQuery: event.target.value });
   };
 
-  // searchQueryFunc = (searchQuery) =>{
-  //     const searchQ = searchQuery;
-  //     this.setState({
-  //       searchQuery: searchQ
-  //     })
-  // }
-
   handleFormSubmit = (event)=> {
     event.preventDefault();
     console.log("inside search Meals");

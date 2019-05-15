@@ -7,9 +7,15 @@ import API from "../services/API";
 import Button from "react-bootstrap/Button";
 
 class MealDetail extends Component {
-  state = {
-    meal: {}
-  };
+  constructor(props){
+    super(props);
+    
+    this.state = {
+        meal: {}
+      };
+    this.handleFormSubmit = this.handleFormSubmit.bind(this);
+  }
+  
   // When this component mounts, grab the book with the _id of this.props.match.params.id
   // e.g. localhost:3000/books/599dcb67f0f16317844583fc
   componentDidMount() {
@@ -23,19 +29,20 @@ class MealDetail extends Component {
       })
     });
   }
+  handleFormSubmit(event) {
+    event.preventDefault();
+    console.log("In handle Form Submit",this.props.match.params.id);
+    API.addToCart(this.props.match.params.id)
+    .then(res => {
+      console.log("in then of addtoCart")
+      console.log("logging res addTC", res);
+    })
+  }
 
   render() {
     return (
       <Container fluid>
-        <Row>
-          <Col size="md-12">
-            <Jumbotron>
-              <h1>
-                 Nav Bar with Links
-              </h1>
-            </Jumbotron>
-          </Col>
-        </Row>
+        
         <Row>
           <Col size="lg-4 md-offset-2">
           <MealPicTile
@@ -53,7 +60,8 @@ class MealDetail extends Component {
            <p>{this.state.meal.type}</p>
            <p>Get it by: {this.state.meal.time_available}</p>
            <p>${this.state.meal.plateprice} / plate</p>
-           <Button variant="danger" href={`/purchase/${this.state.meal.id}`}>BUY</Button>
+           <Button variant="danger" onClick={this.handleFormSubmit}>BUY</Button>
+           {/* href={`/purchase/${this.state.meal.id}`} */}
            <br></br>
            <p>{this.state.meal.quantity} plates left </p>
            <p>allergens</p>

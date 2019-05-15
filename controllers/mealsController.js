@@ -101,6 +101,39 @@ module.exports = {
       })
       .catch(err => res.status(422).json(err));
   },
+  addToCart: function(req, res){
+    console.log("Inside addToCart Ctrllr")
+    db.Meal.findOne({
+       logging: console.log,
+      where: {
+        id: (req.params.id)
+      }
+    })
+    .then(dbMeal => {
+      console.log("inside then of controller addToCart")
+      console.log("dbMeal", dbMeal);
+      const UserMeal = {
+        MealId: dbMeal.id,
+        UserId: dbMeal.UserId,
+        CatererId: dbMeal.CatererId,
+        picked_up: false,
+        purchased: false,
+        name: dbMeal.name,
+        type: dbMeal.type,
+        description: dbMeal.description,
+        photo_URL: dbMeal.photo_URL
+      }
+      db.UserMeal.create(UserMeal)
+        .then(() => {
+          res.status(200).json(UserMeal);
+          res.end();
+          console.log("then of UserMeal", dbMeal);
+        });
+      // res.json(mealDetails)
+      // console.log(mealDetails.toJSON());
+    })
+    .catch(err => res.status(422).json(err));
+  },
   update: function(req, res) {
     db.Meal
       .findOneAndUpdate({ _id: req.params.id }, req.body)
