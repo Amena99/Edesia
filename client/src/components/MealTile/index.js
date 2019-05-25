@@ -15,7 +15,7 @@ export function MealTile({ id, title, type, date, price, photo_url }) {
                     <img className='img-fluid tile-image' src={photo_url} alt={title}></img>
                     {/* <div className='tile-date'><Moment format="YYYY/MM/DD">{date}</Moment></div> */}
                     <div className='tile-date'>
-                    <Moment className="time" format="LT" date={date}/>
+                    <Moment className="time" format="LLL" date={date}/>
                     </div>
                 </Col>
             </Row>

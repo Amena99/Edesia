@@ -6,13 +6,19 @@ const Op = Sequelize.Op;
 module.exports = {
   findAll: function(req, res) {
     console.log("Inside findAll");
-    db.Meal.findAll({})
+    db.Meal.findAll({
+      where: {
+        date_available: {
+          [Op.gte]: new Date()
+        }
+      }
+    })
       .then(function(meals){
          res.json(meals)
       }); 
   },
   findSplash: function(req, res){
-    console.log("Inside find splash");
+    console.log("Inside findSplash");
     db.Meal.findAll({
       limit: 5
     }).then(function (meals){
@@ -128,8 +134,6 @@ module.exports = {
           res.end();
           console.log("then of UserMeal", dbMeal);
         });
-      // res.json(mealDetails)
-      // console.log(mealDetails.toJSON());
     })
     .catch(err => res.status(422).json(err));
   },

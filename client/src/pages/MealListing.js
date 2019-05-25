@@ -23,7 +23,8 @@ class MealListing extends Component {
   componentDidMount() {
     this.loadMeals();
   }
-
+  
+  //load meals available after current time
   loadMeals = () => {
     if(!(this.state.searchQuery === null)){
       this.searchMeals();
@@ -38,7 +39,6 @@ class MealListing extends Component {
       })
       .catch(err => console.log("loggin error", err));
     }
-   
   };
 
   logState= () => {
@@ -46,8 +46,7 @@ class MealListing extends Component {
   }
   
   handleInputChange = event => {
-    console.log("inside handle Input change")
-    
+    console.log("Inside handle Input change")
     this.setState({ searchQuery: event.target.value });
   };
 
