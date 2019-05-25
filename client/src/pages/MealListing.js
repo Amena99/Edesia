@@ -11,8 +11,10 @@ import { Checkbox } from "../components/Checkbox";
 import {MealTile } from "../components/MealTile";
 
 class MealListing extends Component {
+  intervalID;
   constructor(props){
     super(props);
+    
 
     this.state = {
     meals: [],
@@ -22,8 +24,13 @@ class MealListing extends Component {
   
   componentDidMount() {
     this.loadMeals();
+    this.intervalID = setInterval(this.loadMeals.bind(this), 120000);
   }
-  
+
+  componentWillUnmount() {
+    clearInterval(this.intervalID);
+  }
+
   //load meals available after current time
   loadMeals = () => {
     if(!(this.state.searchQuery === null)){
