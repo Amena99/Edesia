@@ -12,7 +12,7 @@ module.exports = [
       allergen_crustaceanshellfish: 0,
       allergen_eggs: 0,
       allergen_soya: 0,
-      date_available: "2019-05-25 17:00:00",
+      date_available: "2019-05-25 18:28:00",
       quantity: 7,
       plateprice: 4.99,
       zipcode1:60077,

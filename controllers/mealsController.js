@@ -17,21 +17,35 @@ module.exports = {
          res.json(meals)
       }); 
   },
+
   findSplash: function(req, res){
     console.log("Inside findSplash");
     db.Meal.findAll({
+      where: {
+        date_available: {
+          [Op.gte]: new Date()
+        }
+      },
       limit: 5
     }).then(function (meals){
       res.json(meals)
     });
   },
+  
   findByZip: function(req, res){
     console.log("Inside find by zip");
     console.log("res in findByZip", req.params.zipcode);
     let zipcode = req.params.zipcode;
     db.Meal.findAll({
       where: {
-        [Op.or]: [{zipcode1: zipcode},
+        [Op.and] : [
+          {
+            date_available: {
+            [Op.gte]: new Date()
+            }
+          },
+          {
+            [Op.or]: [{zipcode1: zipcode},
                   {zipcode2: zipcode},
                   {zipcode3: zipcode},
                   {zipcode4: zipcode},
@@ -40,7 +54,8 @@ module.exports = {
                   {zipcode7: zipcode},
                   {zipcode8: zipcode},
                   {zipcode9: zipcode},
-                  {zipcode10: zipcode}]  
+                  {zipcode10: zipcode}] 
+          }]
       },
       include: [db.User],
       limit: 5
@@ -48,6 +63,7 @@ module.exports = {
       res.json(meals)
     });
   },
+
   findById: function(req, res) {
     console.log("inside controller findbyID")
     db.Meal
@@ -63,6 +79,8 @@ module.exports = {
       })
       .catch(err => res.status(422).json(err));
   },
+
+  //change to after current time  
   searchByKeyword: function(req, res){
     console.log("Inside controller.searchByKeyword");
     const keyword = req.params.searchQuery;
@@ -70,8 +88,14 @@ module.exports = {
     console.log("req.params", req.params.searchQuery);
     db.Meal.findAll({
       // logging: console.log,
-      where: {
-          [Op.or]: [
+       where: {
+        [Op.and] : [
+          {
+            date_available: {
+              [Op.gte]: new Date()
+            }
+          },
+          {[Op.or]: [
             {name: {
               [Op.like]: [`%${keyword}%`]
               }
@@ -84,7 +108,8 @@ module.exports = {
               [Op.like]: [`%${keyword}%`]
               }
             }
-          ]
+          ]}
+        ]
           }
         }).then(searchMeals => {
         console.log(searchMeals.length);
