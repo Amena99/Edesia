@@ -1,4 +1,4 @@
-import React from "react";
+import React, {Component} from "react";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import MealListing from "./pages/MealListing";
 import MealDetail from "./pages/MealDetail";
@@ -6,10 +6,19 @@ import Purchase from "./pages/Purchase";
 import Splash from "./pages/Splash";
 import NewMeal from "./pages/NewMeal";
 import ShoppingBasket from "./pages/ShoppingBasket";
+// import withFirebaseAuth from "react-with-firebase-auth";
+// import * as firebase from "firebase/app";
+// import "firebase/auth";
+// import firebaseConfig from "./firebase_config";
+
+// const firebaseApp = firebase.initializeApp(firebaseConfig);
 
 
-function App() {
-  return (
+class App extends Component {
+ render(){
+
+  
+   return (
     <Router>
       <div>
         <Switch>
@@ -24,6 +33,8 @@ function App() {
       </div>
     </Router>
   );
-}
+ }
+};
+
 
 export default App;

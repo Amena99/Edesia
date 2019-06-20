@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import Geocode from "react-geocode";
-
 import API from "../services/API";
 import { Link } from "react-router-dom";
 import { Col, Row, Container } from "../components/Grid";
@@ -12,6 +11,12 @@ import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
 import {Card} from "react-bootstrap"; 
 import Moment from 'react-moment';
+import withFirebaseAuth from "react-with-firebase-auth";
+import * as firebase from "firebase/app";
+import "firebase/auth";
+import firebaseConfig from "../firebase_config";
+
+const firebaseApp = firebase.initializeApp(firebaseConfig);
 
 class Splash extends Component {
   constructor(){
@@ -184,6 +189,13 @@ class Splash extends Component {
 
   render() {
     const userZipcode = this.state.userZipcode;
+
+    const {
+      user,
+      signOut,
+      signInWithGoogle,
+    } = this.props;
+
     return (
       <div>
       <Helmet>
@@ -216,7 +228,7 @@ class Splash extends Component {
                     </Row>
                     
                   <h4 onClick={this.getGeolocation} id="show-meals-text">Show Meals Near Me <i className="fa fa-angle-double-right"></i></h4>
-                 
+                  <Button id="signup" className="open-modal-btn" label="Log In" onClick={signInWithGoogle}>Log In With Google</Button>
                     <Button id="signup" className="open-modal-btn" label="Log In" onClick={this.openLoginHandler}>Log In</Button>
                     <Button id="signup" label="Sign Up" onClick={this.openSignupHandler}>Sign Up</Button>
                    
@@ -322,4 +334,13 @@ class Splash extends Component {
   }
 }
 
-export default Splash;
+const firebaseAppAuth = firebaseApp.auth();
+
+const providers = {
+  googleProvider: new firebase.auth.GoogleAuthProvider(),
+};
+
+export default withFirebaseAuth({
+  providers,
+  firebaseAppAuth,
+})(Splash);
