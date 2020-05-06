@@ -6,12 +6,11 @@ import Purchase from "./pages/Purchase";
 import Splash from "./pages/Splash";
 import NewMeal from "./pages/NewMeal";
 import ShoppingBasket from "./pages/ShoppingBasket";
-// import withFirebaseAuth from "react-with-firebase-auth";
-// import * as firebase from "firebase/app";
-// import "firebase/auth";
-// import firebaseConfig from "./firebase_config";
+// import SignIn from "./pages/SignIn";
+// import SignUp from "./pages/SignUp";
+// import ProfilePage from "./pages/ProfilePage";
+// import PasswordReset from "./pages/PasswordReset";
 
-// const firebaseApp = firebase.initializeApp(firebaseConfig);
 
 
 class App extends Component {

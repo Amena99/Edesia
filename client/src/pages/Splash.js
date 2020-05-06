@@ -11,12 +11,7 @@ import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
 import {Card} from "react-bootstrap"; 
 import Moment from 'react-moment';
-import withFirebaseAuth from "react-with-firebase-auth";
-import * as firebase from "firebase/app";
-import "firebase/auth";
-import firebaseConfig from "../firebase_config";
 
-const firebaseApp = firebase.initializeApp(firebaseConfig);
 
 class Splash extends Component {
   constructor(){
@@ -334,13 +329,5 @@ class Splash extends Component {
   }
 }
 
-const firebaseAppAuth = firebaseApp.auth();
 
-const providers = {
-  googleProvider: new firebase.auth.GoogleAuthProvider(),
-};
-
-export default withFirebaseAuth({
-  providers,
-  firebaseAppAuth,
-})(Splash);
+export default (Splash);
