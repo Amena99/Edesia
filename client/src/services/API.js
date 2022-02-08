@@ -10,7 +10,7 @@ export default {
     console.log("appCode", appCode);
     return axios.get(`https://reverse.geocoder.api.here.com/6.2/reversegeocode.json?app_id=${appID}&app_code=${appCode}&mode=retrieveAddresses&prox=${lat},${lon}`);
   },
-  // Gets all books
+  // Gets all meals
   getMeals: function() {
     console.log("inside API services");
     return axios.get("/api/meals");
@@ -25,23 +25,25 @@ export default {
     console.log("inside API get meals by loc");
     return axios.get("/api/meals/splash/"+ zipcode);
   },
-  // Gets the book with the given id
+  // Gets the meals with the given id
   getMealById: function(id) {
     return axios.get("/api/meals/" + id);
   },
+  //searches for meal by keyword
   searchMeals: function(searchQuery) {
     console.log("Inside API search by query");
     return axios.get("api/meals/search/"+ searchQuery);
   },
+  //adds meal to cart
   addToCart: function(id){
     console.log("Inside add to cart API");
     return axios.get("api/meals/add/"+id);
   },
-  // Deletes the book with the given id
+  // Deletes the meal with the given id
   deleteMeal: function(id) {
     return axios.delete("/api/meals/" + id);
   },
-  // Saves a book to the database
+  // Saves a meal to the database
   saveMeal: function(mealData) {
     return axios.post("/api/meals", mealData);
   }

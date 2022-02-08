@@ -132,10 +132,10 @@ class Splash extends Component {
 
     const getLoc = async () => {
       const latlonc =  await navigator.geolocation.getCurrentPosition(geoSuccess);
-      console.log(latlonc);
+      console.log(" latlonc = " , latlonc);
     }
     await getLoc();
-    // this.getZipcode();
+   // this.getZipcode();
     
   };
 
