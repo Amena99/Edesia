@@ -2,11 +2,9 @@
   "name": "mern",
   "version": "1.0.0",
   "description": "",
-  "engines": 
-    {
-      "node": "16.13.2"
-    },
-
+  "engines": {
+    "node": "16.13.2"
+  },
   "main": "server.js",
   "proxy": "http://localhost:3001/",
   "scripts": {
@@ -32,6 +30,7 @@
     "express": "^4.16.4",
     "firebase": "^6.6.2",
     "if-env": "^1.0.4",
+    "latest-version": "^6.0.0",
     "mongoose": "^5.3.16",
     "mysql2": "^1.6.5",
     "paymentfont": "^1.2.5",
