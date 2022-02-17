@@ -145,14 +145,14 @@ class Splash extends Component {
     console.log("in gZ", this.state.lon);
 
     API.getZipcode(this.state.lat, this.state.lon, this.state.appID, this.state.appCode)
-    .then(res =>{
+    .then( res => {
       console.log("zipcode", res.data.Response.View[0].Result[0].Location.Address.PostalCode)
       const userZipcode = res.data.Response.View[0].Result[0].Location.Address.PostalCode;
       this.setState({
         userZipcode
       })
       this.getMealsSplash();
-    } )
+    })
     .catch(err => console.log("error", err));
   }
 
@@ -178,8 +178,6 @@ class Splash extends Component {
         .catch(err => console.log(err))
     }
   };
-
-
   
 
   render() {
@@ -223,7 +221,10 @@ class Splash extends Component {
                     </Row>
                     
                   <h4 onClick={this.getGeolocation} id="show-meals-text">Show Meals Near Me <i className="fa fa-angle-double-right"></i></h4>
-                  <Button id="signup" className="open-modal-btn" label="Log In" onClick={signInWithGoogle}>Log In With Google</Button>
+                  {
+                    user 
+                    ? <p>Hello, {user.displayName}</p> 
+                    :  <Button id="signup" className="open-modal-btn" label="Log In" onClick={signInWithGoogle}>Log In With Google</Button>}
                     <Button id="signup" className="open-modal-btn" label="Log In" onClick={this.openLoginHandler}>Log In</Button>
                     <Button id="signup" label="Sign Up" onClick={this.openSignupHandler}>Sign Up</Button>
                    
