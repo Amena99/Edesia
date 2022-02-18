@@ -232,7 +232,7 @@ class Splash extends Component {
                   </Col>
                   <Col size="md-6" id="right-col" >
                   <Row id="browse-option-splash">
-                  <a href="/meals">Browse all meals<i className="fa fa-angle-double-right"/></a>
+                  <a href="/meals">Browse all meals!<i className="fa fa-angle-double-right"/></a>
                   </Row>
                   {this.state.meals.map(meal => (
                     <Row id="meal-row">
